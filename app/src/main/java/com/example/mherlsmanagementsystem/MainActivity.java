@@ -3,6 +3,7 @@ package com.example.mherlsmanagementsystem;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,6 +41,10 @@ public class MainActivity extends AppCompatActivity {
             alertDialog.setTitle("Alert");
             alertDialog.setMessage("Welcome to MHERLS Management System");
             alertDialog.show();
+
+            Intent intent = new Intent(MainActivity.this, SystemDashboard.class);
+            startActivity(intent);
+            finish();
 
         });
 

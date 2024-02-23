@@ -8,7 +8,7 @@
         tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="@dimen/_306sdp"
+            android:layout_width="@dimen/_310sdp"
             android:layout_height="@dimen/_445sdp"
             android:background="@drawable/panel"
             app:layout_constraintStart_toStartOf="parent"
@@ -98,7 +98,7 @@
                 android:layout_height="65dp"
                 android:id="@+id/loginbutton"
                 android:textColor="@color/white"
-                android:background="#4056F4"
+                android:background="@drawable/button"
                 android:drawableStart="@drawable/login"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
