@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "898098624608",
+    "firebase_url": "https://mherlmanagementsystem-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "mherlmanagementsystem",
+    "storage_bucket": "mherlmanagementsystem.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:898098624608:android:c0d8eb9e1176cd3419ab05",
+        "android_client_info": {
+          "package_name": "com.example.mherlsmanagementsystem"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5_pN5WD83Gmyp6RwbNhz_ix4sb8B1zYU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
