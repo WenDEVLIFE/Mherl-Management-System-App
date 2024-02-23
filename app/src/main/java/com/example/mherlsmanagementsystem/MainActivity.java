@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Switch;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -12,6 +14,12 @@ import com.google.firebase.database.FirebaseDatabase;
 public class MainActivity extends AppCompatActivity {
 
     private Button button;
+
+    private Switch switch1;
+
+    private EditText editText , passwordText;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +41,22 @@ public class MainActivity extends AppCompatActivity {
             alertDialog.setMessage("Welcome to MHERLS Management System");
             alertDialog.show();
 
+        });
+
+        editText = findViewById(R.id.usernameid);
+        passwordText = findViewById(R.id.passwordid);
+
+
+        switch1 = findViewById(R.id.see_password_switch);
+        switch1.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                // The switch is enabled/checked
+                passwordText.setInputType(1);
+
+            } else {
+                // The switch is disabled
+                passwordText.setInputType(129);
+            }
         });
 
     }
