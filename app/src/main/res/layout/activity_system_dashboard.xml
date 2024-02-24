@@ -32,7 +32,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="@dimen/_16sdp"
                         android:id="@+id/constraintLayout">
 
                     <ImageView
@@ -61,11 +61,11 @@
                         android:layout_width="@dimen/_140sdp"
                         android:layout_height="@dimen/_130sdp"
                         android:background="@drawable/dash_layout"
-                        android:layout_marginTop="@dimen/_30sdp"
+                        android:layout_marginTop="36dp"
                         app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
                         app:layout_constraintStart_toStartOf="parent"
                         android:id="@+id/constraintLayout2"
-                        android:layout_marginStart="@dimen/_16sdp">
+                        android:layout_marginStart="16dp">
 
                     <ImageView
                             android:layout_width="@dimen/_72sdp"
@@ -217,13 +217,13 @@
                         app:layout_constraintStart_toEndOf="@+id/constraintLayout3"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/constraintLayout5"
-                        android:layout_marginTop="40dp"
-                        app:layout_constraintHorizontal_bias="0.838">
+                        android:layout_marginTop="36dp"
+                        app:layout_constraintHorizontal_bias="0.677">
 
                     <ImageView
                             android:layout_width="@dimen/_72sdp"
                             android:layout_height="@dimen/_36sdp"
-                            app:srcCompat="@drawable/settings_12015693"
+                            app:srcCompat="@drawable/cubes_2875878"
                             android:id="@+id/imageView4"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -232,7 +232,7 @@
                             app:layout_constraintHorizontal_bias="0.375" />
 
                     <TextView
-                            android:text="Sales"
+                            android:text="Product"
                             android:layout_width="@dimen/_89sdp"
                             android:layout_height="@dimen/_36sdp"
                             android:id="@+id/salety"
