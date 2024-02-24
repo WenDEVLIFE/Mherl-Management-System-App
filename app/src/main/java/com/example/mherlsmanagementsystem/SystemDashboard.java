@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.navigation.NavigationView;
+
+import java.time.LocalTime;
 
 public class SystemDashboard extends AppCompatActivity {
 
@@ -22,7 +25,66 @@ public class SystemDashboard extends AppCompatActivity {
         setContentView(R.layout.activity_system_dashboard);
 
         ImageView imageView = findViewById(R.id.sunrisegif);
-        Glide.with(this).load(R.drawable.fieldunscreen).into(imageView);
+
+        // we use this to get the current time
+        LocalTime now = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            now = LocalTime.now();
+        }
+
+        LocalTime morningStart = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            morningStart = LocalTime.of(6, 0);
+        }
+        LocalTime morningEnd = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            morningEnd = LocalTime.of(11, 59);
+        }
+
+        LocalTime noonStart = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            noonStart = LocalTime.of(12, 0);
+        }
+        LocalTime noonEnd = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            noonEnd = LocalTime.of(16, 59);
+        }
+
+        LocalTime eveningStart = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            eveningStart = LocalTime.of(17, 0);
+        }
+        LocalTime eveningEnd = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            eveningEnd = LocalTime.of(20, 59);
+        }
+
+        LocalTime nightStart = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            nightStart = LocalTime.of(21, 0);
+        }
+
+        LocalTime nightEnd = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            nightEnd = LocalTime.of(5, 59);
+        }
+
+        // Then to check the localtime and set the background image
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            if ((now.isAfter(morningStart) && now.isBefore(morningEnd)) || now.equals(morningStart) || now.equals(morningEnd)) {
+                System.out.println("It's morning");
+                Glide.with(this).load(R.drawable.sun).into(imageView);
+            } else if ((now.isAfter(noonStart) && now.isBefore(noonEnd)) || now.equals(noonStart) || now.equals(noonEnd)) {
+                System.out.println("It's noon");
+                Glide.with(this).load(R.drawable.fieldunscreen).into(imageView);
+            } else if ((now.isAfter(eveningStart) && now.isBefore(eveningEnd)) || now.equals(eveningStart) || now.equals(eveningEnd)) {
+                System.out.println("It's evening");
+                Glide.with(this).load(R.drawable.night).into(imageView);
+            } else if ((now.isAfter(nightStart) && now.isBefore(nightEnd)) || now.equals(nightStart) || now.equals(nightEnd)) {
+                System.out.println("It's night");
+                Glide.with(this).load(R.drawable.night).into(imageView);
+            }
+        }
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         usernametext = navigationView.getHeaderView(0).findViewById(R.id.username);

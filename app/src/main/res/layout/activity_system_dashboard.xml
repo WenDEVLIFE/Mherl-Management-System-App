@@ -65,12 +65,12 @@
                         app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
                         app:layout_constraintStart_toStartOf="parent"
                         android:id="@+id/constraintLayout2"
-                        android:layout_marginStart="16dp">
+                        android:layout_marginStart="@dimen/_16sdp">
 
                     <ImageView
                             android:layout_width="@dimen/_72sdp"
                             android:layout_height="@dimen/_36sdp"
-                            app:srcCompat="@drawable/sunrise"
+                            app:srcCompat="@drawable/settings_12015693"
                             android:id="@+id/imageView1"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -89,7 +89,8 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            android:layout_marginTop="4dp" />
+                            android:layout_marginTop="4dp"
+                            app:layout_constraintHorizontal_bias="0.757" />
 
                     <TextView
                             android:text="0"
@@ -114,12 +115,13 @@
                         app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
                         android:layout_marginTop="@dimen/_30sdp"
                         app:layout_constraintStart_toEndOf="@+id/constraintLayout2"
-                        android:layout_marginStart="8dp">
+                        android:layout_marginStart="@dimen/_16sdp"
+                        android:id="@+id/constraintLayout5">
 
                     <ImageView
                             android:layout_width="@dimen/_72sdp"
                             android:layout_height="@dimen/_36sdp"
-                            app:srcCompat="@drawable/sunrise"
+                            app:srcCompat="@drawable/user_1077012"
                             android:id="@+id/imageView2"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -138,7 +140,7 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             android:layout_marginTop="4dp"
-                            app:layout_constraintHorizontal_bias="0.666" />
+                            app:layout_constraintHorizontal_bias="1.0" />
 
                     <TextView
                             android:text="0"
@@ -153,6 +155,109 @@
                             app:layout_constraintHorizontal_bias="0.8"
                             app:layout_constraintTop_toBottomOf="@+id/imageView2"
                             android:layout_marginTop="12dp" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="@dimen/_140sdp"
+                        android:layout_height="@dimen/_130sdp"
+                        android:background="@drawable/dash_layout"
+                        android:id="@+id/constraintLayout3"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginStart="16dp"
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
+                        android:layout_marginTop="40dp">
+
+                    <ImageView
+                            android:layout_width="@dimen/_72sdp"
+                            android:layout_height="@dimen/_36sdp"
+                            app:srcCompat="@drawable/loan_1347097"
+                            android:id="@+id/imageView3"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/salet"
+                            android:layout_marginTop="8dp"
+                            app:layout_constraintHorizontal_bias="0.375" />
+
+                    <TextView
+                            android:text="Sales"
+                            android:layout_width="@dimen/_89sdp"
+                            android:layout_height="@dimen/_36sdp"
+                            android:id="@+id/salet"
+                            android:textColor="@color/black"
+                            android:fontFamily="sans-serif-condensed"
+                            android:textSize="@dimen/_20sdp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:layout_marginTop="4dp"
+                            app:layout_constraintHorizontal_bias="0.757" />
+
+                    <TextView
+                            android:text="0"
+                            android:layout_width="120dp"
+                            android:layout_height="36dp"
+                            android:id="@+id/salestext"
+                            android:textColor="@color/black"
+                            android:fontFamily="sans-serif-condensed"
+                            android:textSize="@dimen/_20sdp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="1.0"
+                            app:layout_constraintTop_toBottomOf="@+id/imageView3"
+                            android:layout_marginTop="8dp" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="@dimen/_140sdp"
+                        android:layout_height="@dimen/_130sdp"
+                        android:background="@drawable/dash_layout"
+                        android:id="@+id/constraintLayout4"
+                        app:layout_constraintStart_toEndOf="@+id/constraintLayout3"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout5"
+                        android:layout_marginTop="40dp"
+                        app:layout_constraintHorizontal_bias="0.483">
+
+                    <ImageView
+                            android:layout_width="@dimen/_72sdp"
+                            android:layout_height="@dimen/_36sdp"
+                            app:srcCompat="@drawable/settings_12015693"
+                            android:id="@+id/imageView4"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/salety"
+                            android:layout_marginTop="8dp"
+                            app:layout_constraintHorizontal_bias="0.375" />
+
+                    <TextView
+                            android:text="Sales"
+                            android:layout_width="@dimen/_89sdp"
+                            android:layout_height="@dimen/_36sdp"
+                            android:id="@+id/salety"
+                            android:textColor="@color/black"
+                            android:fontFamily="sans-serif-condensed"
+                            android:textSize="@dimen/_20sdp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:layout_marginTop="4dp"
+                            app:layout_constraintHorizontal_bias="0.757" />
+
+                    <TextView
+                            android:text="0"
+                            android:layout_width="120dp"
+                            android:layout_height="36dp"
+                            android:id="@+id/producttext"
+                            android:textColor="@color/black"
+                            android:fontFamily="sans-serif-condensed"
+                            android:textSize="@dimen/_20sdp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="1.0"
+                            app:layout_constraintTop_toBottomOf="@+id/imageView4"
+                            android:layout_marginTop="8dp" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
