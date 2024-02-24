@@ -7,15 +7,38 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
 public class AddUser extends AppCompatActivity {
 
+    private FloatingActionButton add;
     private TextView usernametext;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_user);
+
+        // Floating action button
+        add = findViewById(R.id.floating_add_user);
+        add.setOnClickListener(v -> {
+            Intent intent = new Intent(AddUser.this, CreateUser.class);
+            startActivity(intent);
+            finish();
+        });
+
+
+
+
+
+
+
+
+
+
+
+
         NavigationView navigationView = findViewById(R.id.nav_view);
         usernametext = navigationView.getHeaderView(0).findViewById(R.id.username);
         usernametext.setText("Username: AdminUser");
