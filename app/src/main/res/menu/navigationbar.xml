@@ -20,11 +20,11 @@
             android:title="Add User" />
     <item
             android:id="@+id/appinfo"
-            android:icon="@drawable/adduser"
-            android:title="Log out" />
+            android:icon="@drawable/info"
+            android:title="App Info" />
 
     <item
-            android:id="@+id/logout"
-            android:icon="@drawable/adduser"
+            android:id="@+id/logoutid"
+            android:icon="@drawable/switch1"
             android:title="Log out" />
 </menu>

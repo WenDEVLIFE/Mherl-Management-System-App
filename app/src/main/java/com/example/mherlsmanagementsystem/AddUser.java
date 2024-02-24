@@ -54,10 +54,13 @@ public class AddUser extends AppCompatActivity {
 
             }
             else if (id == R.id.appinfo) {
-
+                AlertDialog alerts = new AlertDialog.Builder(AddUser.this).create();
+                alerts.setTitle("Alert");
+                alerts.setMessage("You are already in the Notification Page1");
+                alerts.show();
 
             }
-            else if (id == R.id.logout) {
+            else if (id == R.id.logoutid) {
                 AlertDialog alert = new AlertDialog.Builder(AddUser.this).create();
                 alert.setTitle("Logout");
                 alert.setMessage("Are you sure you want to logout?");
@@ -69,6 +72,7 @@ public class AddUser extends AppCompatActivity {
                 alert.setButton(AlertDialog.BUTTON_NEGATIVE, "No", (dialog, which) -> {
                     dialog.dismiss();
                 });
+                alert.show();
             }
             else {
                 return false;

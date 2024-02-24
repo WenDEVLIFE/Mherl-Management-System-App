@@ -130,11 +130,11 @@ public class SystemDashboard extends AppCompatActivity {
 
                 AlertDialog alerts = new AlertDialog.Builder(SystemDashboard.this).create();
                 alerts.setTitle("Alert");
-                alerts.setMessage("You are already in the Notification Page");
+                alerts.setMessage("You are already in the Notification Page1");
                 alerts.show();
 
             }
-            else if (id == R.id.logout) {
+            else if (id == R.id.logoutid) {
 
                 AlertDialog alert = new AlertDialog.Builder(SystemDashboard.this).create();
                 alert.setTitle("Logout");
@@ -143,10 +143,11 @@ public class SystemDashboard extends AppCompatActivity {
                     Intent intent = new Intent(SystemDashboard.this, MainActivity.class);
                     startActivity(intent);
                     finish();
-                });
-                alert.setButton(AlertDialog.BUTTON_NEGATIVE, "No", (dialog, which) -> {
-                    dialog.dismiss();
-                });
+            });
+            alert.setButton(AlertDialog.BUTTON_NEGATIVE, "No", (dialog, which) -> {
+                dialog.dismiss();
+            });
+            alert.show();
 
 
             }
