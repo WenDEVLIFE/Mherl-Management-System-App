@@ -26,8 +26,8 @@
                     android:background="#470FF4">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="385dp"
-                        android:layout_height="47dp"
+                        android:layout_width="@dimen/_285sdp"
+                        android:layout_height="@dimen/_37sdp"
                         android:background="@drawable/dash_layout"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +39,7 @@
                             android:layout_width="72dp"
                             android:layout_height="36dp"
                             app:srcCompat="@drawable/sunrise"
-                            android:id="@+id/imageView"
+                            android:id="@+id/sunrisegif"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             android:layout_marginBottom="4dp" />
@@ -48,40 +48,111 @@
                             android:text="Welcome User"
                             android:layout_width="296dp"
                             android:layout_height="34dp"
+                            android:textColor="@color/black"
                             android:id="@+id/textView"
                             android:fontFamily="sans-serif-condensed"
                             android:textSize="@dimen/_20sdp"
-                            app:layout_constraintStart_toEndOf="@+id/imageView"
+                            app:layout_constraintStart_toEndOf="@+id/sunrisegif"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="182dp"
-                        android:layout_height="122dp"
+                        android:layout_width="@dimen/_140sdp"
+                        android:layout_height="@dimen/_130sdp"
                         android:background="@drawable/dash_layout"
-                        android:layout_marginTop="40dp"
+                        android:layout_marginTop="@dimen/_30sdp"
                         app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
                         app:layout_constraintStart_toStartOf="parent"
+                        android:id="@+id/constraintLayout2"
                         android:layout_marginStart="16dp">
 
                     <ImageView
-                            android:layout_width="72dp"
-                            android:layout_height="36dp"
+                            android:layout_width="@dimen/_72sdp"
+                            android:layout_height="@dimen/_36sdp"
                             app:srcCompat="@drawable/sunrise"
                             android:id="@+id/imageView1"
-                            tools:layout_editor_absoluteY="52dp"
-                            tools:layout_editor_absoluteX="44dp" />
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView1231"
+                            android:layout_marginTop="8dp"
+                            app:layout_constraintHorizontal_bias="0.375" />
 
                     <TextView
-                            android:text="Welcome User"
-                            android:layout_width="132dp"
-                            android:layout_height="25dp"
+                            android:text="Admin"
+                            android:layout_width="@dimen/_89sdp"
+                            android:layout_height="@dimen/_36sdp"
                             android:id="@+id/textView1231"
+                            android:textColor="@color/black"
                             android:fontFamily="sans-serif-condensed"
-                            android:textSize="@dimen/_10sdp"
-                            tools:layout_editor_absoluteY="16dp"
-                            tools:layout_editor_absoluteX="24dp" />
+                            android:textSize="@dimen/_20sdp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:layout_marginTop="4dp" />
+
+                    <TextView
+                            android:text="0"
+                            android:layout_width="120dp"
+                            android:layout_height="36dp"
+                            android:id="@+id/admintext"
+                            android:textColor="@color/black"
+                            android:fontFamily="sans-serif-condensed"
+                            android:textSize="@dimen/_20sdp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="1.0"
+                            app:layout_constraintTop_toBottomOf="@+id/imageView1"
+                            android:layout_marginTop="8dp" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="@dimen/_140sdp"
+                        android:layout_height="@dimen/_130sdp"
+                        android:background="@drawable/dash_layout"
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+                        android:layout_marginTop="@dimen/_30sdp"
+                        app:layout_constraintStart_toEndOf="@+id/constraintLayout2"
+                        android:layout_marginStart="8dp">
+
+                    <ImageView
+                            android:layout_width="@dimen/_72sdp"
+                            android:layout_height="@dimen/_36sdp"
+                            app:srcCompat="@drawable/sunrise"
+                            android:id="@+id/imageView2"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView12313"
+                            android:layout_marginTop="16dp" />
+
+                    <TextView
+                            android:text="User"
+                            android:layout_width="@dimen/_89sdp"
+                            android:layout_height="@dimen/_36sdp"
+                            android:textColor="@color/black"
+                            android:id="@+id/textView12313"
+                            android:fontFamily="sans-serif-condensed"
+                            android:textSize="@dimen/_20sdp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:layout_marginTop="4dp"
+                            app:layout_constraintHorizontal_bias="0.666" />
+
+                    <TextView
+                            android:text="0"
+                            android:layout_width="93dp"
+                            android:layout_height="33dp"
+                            android:id="@+id/usertext"
+                            android:textColor="@color/black"
+                            android:fontFamily="sans-serif-condensed"
+                            android:textSize="@dimen/_20sdp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.8"
+                            app:layout_constraintTop_toBottomOf="@+id/imageView2"
+                            android:layout_marginTop="12dp" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
