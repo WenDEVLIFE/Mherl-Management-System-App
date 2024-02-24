@@ -8,6 +8,7 @@ import android.database.Observable;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
@@ -18,13 +19,15 @@ import com.google.android.material.navigation.NavigationView;
 import java.util.ArrayList;
 
 public class CreateUser extends AppCompatActivity {
-    private TextView usernametext;
+     TextView usernametext;
 
-    private Button adduser, back;
+     Button adduser, back;
 
-    private EditText username, password;
+     EditText username, password;
 
-    private Spinner role;
+    Spinner role;
+
+    CheckBox seePassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,17 @@ public class CreateUser extends AppCompatActivity {
         // UsernameField and PasswordField
         username = findViewById(R.id.usernamefield);
         password = findViewById(R.id.passwordfield);
+
+
+        // This is for the checkbox
+        seePassword = findViewById(R.id.checkBox);
+        seePassword.setOnClickListener(v -> {
+            if (seePassword.isChecked()) {
+                password.setInputType(1);
+            } else {
+                password.setInputType(129);
+            }
+        });
 
 
         // This is for spinner

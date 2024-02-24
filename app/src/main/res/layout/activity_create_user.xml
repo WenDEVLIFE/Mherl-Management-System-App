@@ -32,6 +32,7 @@
                         android:id="@+id/textView31"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_35sdp"
+                        android:textColorHint="@color/black"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -72,9 +73,9 @@
                         android:textSize="@dimen/_15sdp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.316"
+                        app:layout_constraintHorizontal_bias="0.282"
                         app:layout_constraintTop_toBottomOf="@+id/usernamefield"
-                        android:layout_marginTop="@dimen/_15sdp" />
+                        android:layout_marginTop="16dp" />
 
                 <TextView
                         android:text="Select a role"
@@ -93,28 +94,34 @@
                         android:layout_width="@dimen/_230sdp"
                         android:layout_height="@dimen/_43sdp"
                         android:hint="Enter your Password"
+                        android:textColorHint="@color/black"
                         android:inputType="textPassword"
                         android:ems="10"
                         android:id="@+id/passwordfield"
+                        android:textColorHighlight="@color/black"
+                        android:textColor="@color/black"
                         android:background="@drawable/textfields"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView5"
-                        android:layout_marginTop="24dp" />
+                        android:layout_marginTop="12dp"
+                        app:layout_constraintHorizontal_bias="0.437" />
 
                 <EditText
                         android:layout_width="@dimen/_230sdp"
                         android:layout_height="@dimen/_43sdp"
                         android:inputType="text"
+                        android:textColorHint="@color/black"
                         android:hint="Enter your Username"
-                        android:text=""
+                        android:textColor="@color/black"
                         android:background="@drawable/textfields"
                         android:ems="10"
                         android:id="@+id/usernamefield"
                         app:layout_constraintTop_toBottomOf="@+id/textView4"
-                        android:layout_marginTop="@dimen/_15sdp"
+                        android:layout_marginTop="20dp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.428" />
 
                 <Button
                         android:text="Add user"
@@ -159,13 +166,14 @@
                 <Spinner
                         android:layout_width="301dp"
                         android:layout_height="52dp"
-                        android:background="@drawable/textfields"
+                        android:background="#AA4465"
                         android:id="@+id/spinner"
-                        android:tooltipText="Select your role"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView6"
-                        android:layout_marginTop="@dimen/_15sdp"
+                        android:layout_marginTop="16dp"
                         app:layout_constraintHorizontal_bias="0.454" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
