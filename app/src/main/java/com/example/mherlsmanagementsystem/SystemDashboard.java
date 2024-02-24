@@ -117,6 +117,7 @@ public class SystemDashboard extends AppCompatActivity {
                 // Handle navigation_notifications action
             } else if (id == R.id.create_user) {
 
+                // This will go to add user
                 AlertDialog alerts = new AlertDialog.Builder(SystemDashboard.this).create();
                 alerts.setTitle("Alert");
                 alerts.setMessage("You are already in the Notification Page");
@@ -136,6 +137,7 @@ public class SystemDashboard extends AppCompatActivity {
             }
             else if (id == R.id.logoutid) {
 
+                // This is logout action
                 AlertDialog alert = new AlertDialog.Builder(SystemDashboard.this).create();
                 alert.setTitle("Logout");
                 alert.setMessage("Are you sure you want to logout?");

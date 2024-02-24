@@ -25,17 +25,30 @@
                     android:layout_height="match_parent"
                     android:background="#470FF4">
 
-                <Button
-                        android:text="add user"
+                <TextView
+                        android:text="Add User"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/button"
+                        android:id="@+id/textView3"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_35sdp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginTop="16dp"
+                        app:layout_constraintHorizontal_bias="0.497" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:layout_width="@dimen/_63sdp"
+                        android:layout_height="@dimen/_45sdp"
+                        android:clickable="true"
+                        app:srcCompat="@drawable/adduser"
+                        android:id="@+id/floating_add_user"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintHorizontal_bias="0.448"
-                        app:layout_constraintVertical_bias="0.499" />
+                        app:layout_constraintHorizontal_bias="0.954"
+                        android:layout_marginBottom="16dp" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </FrameLayout>
@@ -52,7 +65,6 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="@color/blue"
-            app:itemBackground="@color/blue"
             app:itemTextColor="@color/white"
             app:menu="@menu/navigationbar"
             app:headerLayout="@drawable/username"
