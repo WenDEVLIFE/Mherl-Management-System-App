@@ -52,7 +52,25 @@ public class AddUser extends AppCompatActivity {
                 alerts.show();
                 // Handle create_user action
 
-            } else {
+            }
+            else if (id == R.id.appinfo) {
+
+
+            }
+            else if (id == R.id.logout) {
+                AlertDialog alert = new AlertDialog.Builder(AddUser.this).create();
+                alert.setTitle("Logout");
+                alert.setMessage("Are you sure you want to logout?");
+                alert.setButton(AlertDialog.BUTTON_POSITIVE, "Yes", (dialog, which) -> {
+                    Intent intent = new Intent(AddUser.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                });
+                alert.setButton(AlertDialog.BUTTON_NEGATIVE, "No", (dialog, which) -> {
+                    dialog.dismiss();
+                });
+            }
+            else {
                 return false;
             }
             return true;

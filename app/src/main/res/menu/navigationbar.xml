@@ -18,4 +18,13 @@
             android:id="@+id/create_user"
             android:icon="@drawable/adduser"
             android:title="Add User" />
+    <item
+            android:id="@+id/appinfo"
+            android:icon="@drawable/adduser"
+            android:title="Log out" />
+
+    <item
+            android:id="@+id/logout"
+            android:icon="@drawable/adduser"
+            android:title="Log out" />
 </menu>

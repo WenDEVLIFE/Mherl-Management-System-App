@@ -125,7 +125,32 @@ public class SystemDashboard extends AppCompatActivity {
                 Intent intent = new Intent(SystemDashboard.this, AddUser.class);
                 startActivity(intent);
                 finish();
-            } else {
+            }
+            else if (id == R.id.appinfo) {
+
+                AlertDialog alerts = new AlertDialog.Builder(SystemDashboard.this).create();
+                alerts.setTitle("Alert");
+                alerts.setMessage("You are already in the Notification Page");
+                alerts.show();
+
+            }
+            else if (id == R.id.logout) {
+
+                AlertDialog alert = new AlertDialog.Builder(SystemDashboard.this).create();
+                alert.setTitle("Logout");
+                alert.setMessage("Are you sure you want to logout?");
+                alert.setButton(AlertDialog.BUTTON_POSITIVE, "Yes", (dialog, which) -> {
+                    Intent intent = new Intent(SystemDashboard.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                });
+                alert.setButton(AlertDialog.BUTTON_NEGATIVE, "No", (dialog, which) -> {
+                    dialog.dismiss();
+                });
+
+
+            }
+            else {
                 return false;
             }
             return true;
