@@ -10,6 +10,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import functions.User;
@@ -59,7 +61,12 @@ public class FirebaseController {
                     if (userCreationListener != null) {
 
                         String userId = UUID.randomUUID().toString();
-                        usersRef.child(userId).setValue(new User(username1, password1, role1));
+                        Map<String, Object> user = new HashMap<>();
+                        user.put("username", username1);
+                        user.put("password", password1);
+                        user.put("role", role1);
+                        usersRef.child(userId).setValue(user);
+                        User user1 = (new User(username1, role1));
 
                         // This is for the success
                         userCreationListener.onSuccess();

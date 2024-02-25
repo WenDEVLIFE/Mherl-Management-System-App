@@ -91,9 +91,8 @@ public class AddUser extends AppCompatActivity {
                 alert.setButton(AlertDialog.BUTTON_POSITIVE, "Yes", (dialog, which) -> {
                     Intent intent2 = new Intent(AddUser.this, MainActivity.class);
                     startActivity(intent2);
-                    intent2.putExtra("username", username);
-                    intent2.putExtra("role", role);
                     finish();
+                    
                 });
                 alert.setButton(AlertDialog.BUTTON_NEGATIVE, "No", (dialog, which) -> {
                     dialog.dismiss();
