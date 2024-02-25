@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.time.LocalTime;
 
@@ -86,6 +87,8 @@ public class SystemDashboard extends AppCompatActivity {
             }
         }
 
+
+        // We will get the intent from other tabs
         Intent intent = getIntent();
         String username = intent.getStringExtra("username");
         String role = intent.getStringExtra("role");
@@ -154,6 +157,11 @@ public class SystemDashboard extends AppCompatActivity {
                     Intent intent2 = new Intent(SystemDashboard.this, MainActivity.class);
                     startActivity(intent2);
                     finish();
+
+                    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+                    // To sign out the current user
+                    mAuth.signOut();
             });
             alert.setButton(AlertDialog.BUTTON_NEGATIVE, "No", (dialog, which) -> {
                 dialog.dismiss();

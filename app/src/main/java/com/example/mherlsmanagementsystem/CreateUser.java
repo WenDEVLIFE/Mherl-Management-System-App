@@ -15,6 +15,7 @@ import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseError;
 
 import java.util.ArrayList;
@@ -103,11 +104,16 @@ public class CreateUser extends AppCompatActivity implements UserCreationListene
         });
 
 
+        // We will get the intent from other tabs
+        Intent intent = getIntent();
+        String username1 = intent.getStringExtra("username");
+        String role1 = intent.getStringExtra("role");
+
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         usernametext = navigationView.getHeaderView(0).findViewById(R.id.username);
-        usernametext.setText("Username:" + username);
-        RoleText.setText("Role:" + role);
+        usernametext.setText("Username:" + username1);
+        RoleText.setText("Role:" + role1);
 
         // event listener of the navigation view
         navigationView.setNavigationItemSelectedListener(item -> {
@@ -115,8 +121,10 @@ public class CreateUser extends AppCompatActivity implements UserCreationListene
             if (id == R.id.navigation_home) {
 
                 // Handle navigation_home action
-                Intent intent = new Intent(CreateUser.this, SystemDashboard.class);
-                startActivity(intent);
+                Intent intent1 = new Intent(CreateUser.this, SystemDashboard.class);
+                startActivity(intent1);
+                intent1.putExtra("username", username1);
+                intent1.putExtra("role", role1);
                 finish();
 
 
@@ -135,10 +143,12 @@ public class CreateUser extends AppCompatActivity implements UserCreationListene
                 // Handle navigation_notifications action
             } else if (id == R.id.create_user) {
 
-                AlertDialog alerts = new AlertDialog.Builder(CreateUser.this).create();
-                alerts.setTitle("Alert");
-                alerts.setMessage("You are already in the Notification Page");
-                alerts.show();
+                // Handle create_user action
+                Intent intent1 = new Intent(CreateUser.this, AddUser.class);
+                startActivity(intent1);
+                intent1.putExtra("username", username1);
+                intent1.putExtra("role", role1);
+                finish();
                 // Handle create_user action
 
             }
@@ -154,9 +164,16 @@ public class CreateUser extends AppCompatActivity implements UserCreationListene
                 alert.setTitle("Logout");
                 alert.setMessage("Are you sure you want to logout?");
                 alert.setButton(AlertDialog.BUTTON_POSITIVE, "Yes", (dialog, which) -> {
-                    Intent intent = new Intent(CreateUser.this, MainActivity.class);
-                    startActivity(intent);
+                    Intent intent2 = new Intent(CreateUser.this, MainActivity.class);
+                    intent2.putExtra("username", username1);
+                    intent2.putExtra("role", role1);
+                    startActivity(intent2);
                     finish();
+
+                    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+                    // To sign out the current user
+                    mAuth.signOut();
                 });
                 alert.setButton(AlertDialog.BUTTON_NEGATIVE, "No", (dialog, which) -> {
                     dialog.dismiss();
