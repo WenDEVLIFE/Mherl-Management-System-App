@@ -36,12 +36,18 @@ public class CreateUser extends AppCompatActivity implements UserCreationListene
 
     CheckBox seePassword;
 
+    String username1, role1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_user);
 
+        // We will get the intent from other tabs
+        Intent intent = getIntent();
+        username1 = intent.getStringExtra("username");
+        role1 = intent.getStringExtra("role");
 
         // UsernameField and PasswordField
         username = findViewById(R.id.usernamefield);
@@ -98,20 +104,17 @@ public class CreateUser extends AppCompatActivity implements UserCreationListene
         // This is for the back button
         back = findViewById(R.id.buttonback);
         back.setOnClickListener(v -> {
-            Intent intent = new Intent(CreateUser.this, AddUser.class);
-            startActivity(intent);
+            Intent intent1 = new Intent(CreateUser.this, AddUser.class);
+            intent1.putExtra("username", username1);
+            intent1.putExtra("role", role1);
+            startActivity(intent1);
             finish();
         });
 
 
-        // We will get the intent from other tabs
-        Intent intent = getIntent();
-        String username1 = intent.getStringExtra("username");
-        String role1 = intent.getStringExtra("role");
-
-
         NavigationView navigationView = findViewById(R.id.nav_view);
         usernametext = navigationView.getHeaderView(0).findViewById(R.id.username);
+        RoleText = navigationView.getHeaderView(0).findViewById(R.id.Role);
         usernametext.setText("Username:" + username1);
         RoleText.setText("Role:" + role1);
 
@@ -122,9 +125,9 @@ public class CreateUser extends AppCompatActivity implements UserCreationListene
 
                 // Handle navigation_home action
                 Intent intent1 = new Intent(CreateUser.this, SystemDashboard.class);
-                startActivity(intent1);
                 intent1.putExtra("username", username1);
                 intent1.putExtra("role", role1);
+                startActivity(intent1);
                 finish();
 
 
@@ -165,8 +168,6 @@ public class CreateUser extends AppCompatActivity implements UserCreationListene
                 alert.setMessage("Are you sure you want to logout?");
                 alert.setButton(AlertDialog.BUTTON_POSITIVE, "Yes", (dialog, which) -> {
                     Intent intent2 = new Intent(CreateUser.this, MainActivity.class);
-                    intent2.putExtra("username", username1);
-                    intent2.putExtra("role", role1);
                     startActivity(intent2);
                     finish();
 

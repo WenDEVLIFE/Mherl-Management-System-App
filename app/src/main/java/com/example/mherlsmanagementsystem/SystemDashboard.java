@@ -19,7 +19,9 @@ import java.time.LocalTime;
 
 public class SystemDashboard extends AppCompatActivity {
 
-    TextView usernametext, RoleText;
+    TextView usernametext, RoleText, greetings;
+
+    String username, role;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,9 +92,12 @@ public class SystemDashboard extends AppCompatActivity {
 
         // We will get the intent from other tabs
         Intent intent = getIntent();
-        String username = intent.getStringExtra("username");
-        String role = intent.getStringExtra("role");
+        username = intent.getStringExtra("username");
+        role = intent.getStringExtra("role");
 
+        // To greet the userg
+        greetings = findViewById(R.id.textView);
+        greetings.setText("Welcome "+ username);
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         usernametext = navigationView.getHeaderView(0).findViewById(R.id.username);
@@ -134,9 +139,9 @@ public class SystemDashboard extends AppCompatActivity {
                 alerts.show();
                 // Handle create_user action
                 Intent intent1 = new Intent(SystemDashboard.this, AddUser.class);
-                startActivity(intent1);
                 intent1.putExtra("username", username);
                 intent1.putExtra("role", role);
+                startActivity(intent1);
                 finish();
             }
             else if (id == R.id.appinfo) {

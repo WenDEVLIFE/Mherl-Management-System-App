@@ -16,6 +16,8 @@ public class AddUser extends AppCompatActivity {
     FloatingActionButton add;
     TextView usernametext, RoleText;
 
+    String username, role;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -23,16 +25,16 @@ public class AddUser extends AppCompatActivity {
         setContentView(R.layout.activity_add_user);
 
         Intent intent = getIntent();
-        String username = intent.getStringExtra("username");
-        String role = intent.getStringExtra("role");
+        username = intent.getStringExtra("username");
+        role = intent.getStringExtra("role");
 
         // Floating action button
         add = findViewById(R.id.floating_add_user);
         add.setOnClickListener(v -> {
             Intent intent1 = new Intent(AddUser.this, CreateUser.class);
-            startActivity(intent1);
             intent1.putExtra("username", username);
             intent1.putExtra("role", role);
+            startActivity(intent1);
             finish();
         });
 
@@ -40,6 +42,7 @@ public class AddUser extends AppCompatActivity {
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         usernametext = navigationView.getHeaderView(0).findViewById(R.id.username);
+        RoleText = navigationView.getHeaderView(0).findViewById(R.id.Role);
         usernametext.setText("Username:" + username);
         RoleText.setText("Role:" + role);;
 
@@ -50,9 +53,9 @@ public class AddUser extends AppCompatActivity {
 
                 // Handle navigation_home action
                 Intent intent1 = new Intent(AddUser.this, SystemDashboard.class);
-                startActivity(intent1);
                 intent1.putExtra("username", username);
-                intent1.putExtra("role", role);
+                intent1.putExtra("role",role);
+                startActivity(intent1);
                 finish();
 
 
@@ -73,7 +76,7 @@ public class AddUser extends AppCompatActivity {
 
                 AlertDialog alerts = new AlertDialog.Builder(AddUser.this).create();
                 alerts.setTitle("Alert");
-                alerts.setMessage("You are already in the Notification Page");
+                alerts.setMessage("You are already in the Add User Page");
                 alerts.show();
                 // Handle create_user action
 
@@ -90,6 +93,8 @@ public class AddUser extends AppCompatActivity {
                 alert.setTitle("Logout");
                 alert.setMessage("Are you sure you want to logout?");
                 alert.setButton(AlertDialog.BUTTON_POSITIVE, "Yes", (dialog, which) -> {
+
+                    // LOGOUT CLASS
                     Intent intent2 = new Intent(AddUser.this, MainActivity.class);
                     startActivity(intent2);
                     finish();

@@ -1,9 +1,7 @@
 package FirebaseController;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 
-import com.example.mherlsmanagementsystem.CreateUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -40,6 +38,7 @@ public class FirebaseController {
 
 
     public void setUserCreationListener(UserCreationListener userCreationListener) {
+        // UserCreationListener is an interface
         this.userCreationListener = userCreationListener;
     }
 
@@ -66,6 +65,8 @@ public class FirebaseController {
                         user.put("password", password1);
                         user.put("role", role1);
                         usersRef.child(userId).setValue(user);
+
+                        //This is for adding
                         User user1 = (new User(username1, role1));
 
                         // This is for the success
