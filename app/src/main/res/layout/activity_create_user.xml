@@ -26,8 +26,8 @@
                     android:background="#F39B6D">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="378dp"
-                        android:layout_height="679dp"
+                        android:layout_width="@dimen/_290sdp"
+                        android:layout_height="@dimen/_530sdp"
                         android:background="@drawable/shadowpanel"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -44,9 +44,9 @@
                             app:layout_constraintTop_toTopOf="parent">
 
                         <Spinner
-                                android:layout_width="237dp"
-                                android:layout_height="66dp"
-                                android:background="@color/blue"
+                                android:layout_width="@dimen/_242sdp"
+                                android:layout_height="@dimen/_40sdp"
+                                android:background="@drawable/spinnerdesign"
                                 android:id="@+id/spinner"
                                 android:textColor="@color/black"
                                 android:textColorHint="@color/black"
@@ -171,7 +171,6 @@
             android:background="@color/blue"
             app:itemTextColor="@color/white"
             app:menu="@menu/navigationbar"
-            app:itemIconTint="@null"
             app:headerLayout="@drawable/username"
             />
 

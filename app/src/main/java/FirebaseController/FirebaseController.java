@@ -25,6 +25,8 @@ public class FirebaseController {
 
     private DatabaseReference Database;
 
+
+    // Singleton pattern
     public static FirebaseController getInstance() {
         if (instance == null) {
             instance = new FirebaseController();
@@ -33,6 +35,8 @@ public class FirebaseController {
     }
 
     public FirebaseController(){
+
+        // Our database reference
         Database = FirebaseDatabase.getInstance().getReference();
     }
 
@@ -59,11 +63,16 @@ public class FirebaseController {
                     // Username does not exist, create new user
                     if (userCreationListener != null) {
 
+                        // Id
                         String userId = UUID.randomUUID().toString();
+
+                        // This is for hashmap
                         Map<String, Object> user = new HashMap<>();
                         user.put("username", username1);
                         user.put("password", password1);
                         user.put("role", role1);
+
+                        // then insert the value in hashmap
                         usersRef.child(userId).setValue(user);
 
                         //This is for adding

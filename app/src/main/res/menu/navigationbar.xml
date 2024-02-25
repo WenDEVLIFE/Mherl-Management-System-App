@@ -3,28 +3,34 @@
     <item
             android:id="@+id/navigation_home"
             android:icon="@drawable/home"
+            android:tint="@color/black"
             android:title="Dashboard" />
 
     <item
             android:id="@+id/navigation_product"
             android:icon="@drawable/sales"
+            android:tint="@color/black"
             android:title="Add product" />
 
     <item
             android:id="@+id/navigation_notifications"
             android:icon="@drawable/seesales"
+            android:tint="@color/black"
             android:title="Sales" />
     <item
             android:id="@+id/create_user"
             android:icon="@drawable/adduser"
+            android:tint="@color/black"
             android:title="Add User" />
     <item
             android:id="@+id/appinfo"
             android:icon="@drawable/info"
+            android:tint="@color/black"
             android:title="App Info" />
 
     <item
             android:id="@+id/logoutid"
             android:icon="@drawable/power"
+            android:tint="@color/black"
             android:title="Log out" />
 </menu>

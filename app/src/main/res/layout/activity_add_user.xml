@@ -26,7 +26,7 @@
                     android:background="#F39B6D">
 
                 <TextView
-                        android:text="Add User"
+                        android:text="@string/add_user"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/textView3"
@@ -48,7 +48,9 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintHorizontal_bias="0.954"
-                        android:layout_marginBottom="16dp" />
+                        android:layout_marginBottom="16dp"
+                        android:contentDescription="@string/todo"
+                        android:focusable="true" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </FrameLayout>
@@ -60,7 +62,6 @@
 
     <com.google.android.material.navigation.NavigationView
             android:id="@+id/nav_view"
-            app:itemIconTint="@null"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
