@@ -15,12 +15,16 @@ import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DatabaseError;
 
 import java.util.ArrayList;
 
 import FirebaseController.FirebaseController;
+import functions.UserCreationListener;
 
-public class CreateUser extends AppCompatActivity {
+public class CreateUser extends AppCompatActivity implements UserCreationListener {
+
+
      TextView usernametext;
 
      Button adduser, back;
@@ -30,6 +34,7 @@ public class CreateUser extends AppCompatActivity {
     Spinner role;
 
     CheckBox seePassword;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +87,7 @@ public class CreateUser extends AppCompatActivity {
             } else {
 
                 FirebaseController send = FirebaseController.getInstance();
+                send.setUserCreationListener(this);
                 send.CreateUser(username1, password1, role1);
 
 
@@ -161,5 +167,49 @@ public class CreateUser extends AppCompatActivity {
             }
             return true;
         });
+    }
+
+    @Override
+    public void onSuccess() {
+        runOnUiThread(() -> {
+
+            // This will show the alert dialog
+            AlertDialog dialog = new AlertDialog.Builder(CreateUser.this).create();
+            dialog.setTitle("Created a user");
+            dialog.setMessage("You successfully created a user");
+            dialog.show();
+
+
+            // This will set default value of the fields
+            username.setText("");
+            password.setText("");
+            role.setSelection(0);
+        });
+    }
+
+    @Override
+    public void onFailure() {
+        runOnUiThread(() -> {
+
+            // This will show the alert dialog
+            AlertDialog alertDialog = new AlertDialog.Builder(CreateUser.this).create();
+            alertDialog.setTitle("Alert");
+            alertDialog.setMessage("Username already exists");
+            alertDialog.show();
+        });
+
+    }
+
+    @Override
+    public void onError(DatabaseError databaseError) {
+        runOnUiThread(() -> {
+
+            // This will show the alert dialog
+            AlertDialog alertDialog = new AlertDialog.Builder(CreateUser.this).create();
+            alertDialog.setTitle("Alert");
+            alertDialog.setMessage("Error: " + databaseError.getMessage());
+            alertDialog.show();
+        });
+
     }
 }

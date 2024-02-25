@@ -28,17 +28,6 @@ public class AddUser extends AppCompatActivity {
             finish();
         });
 
-
-
-
-
-
-
-
-
-
-
-
         NavigationView navigationView = findViewById(R.id.nav_view);
         usernametext = navigationView.getHeaderView(0).findViewById(R.id.username);
         usernametext.setText("Username: AdminUser");
