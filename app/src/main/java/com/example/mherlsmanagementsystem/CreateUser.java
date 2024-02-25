@@ -18,6 +18,8 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 
+import FirebaseController.FirebaseController;
+
 public class CreateUser extends AppCompatActivity {
      TextView usernametext;
 
@@ -67,11 +69,23 @@ public class CreateUser extends AppCompatActivity {
         // This is for the add user button
         adduser= findViewById(R.id.buttonadd);
         adduser.setOnClickListener(v -> {
+            String username1 = username.getText().toString();
+            String password1 = password.getText().toString();
+            String role1 = role.getSelectedItem().toString();
 
-            AlertDialog alertDialog = new AlertDialog.Builder(CreateUser.this).create();
-            alertDialog.setTitle("Alert");
-            alertDialog.setMessage("User Added Successfully");
-            alertDialog.show();
+            if(username1.isEmpty() || password1.isEmpty() || role1.equals("Select Role")){
+                AlertDialog alertDialog = new AlertDialog.Builder(CreateUser.this).create();
+                alertDialog.setTitle("Alert");
+                alertDialog.setMessage("Please fill all the fields");
+                alertDialog.show();
+                return;
+            } else {
+
+                FirebaseController send = FirebaseController.getInstance();
+                send.CreateUser(username1, password1, role1);
+
+
+            }
         });
 
         // This is for the back button
