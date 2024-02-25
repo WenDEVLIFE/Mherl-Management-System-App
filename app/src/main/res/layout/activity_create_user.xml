@@ -23,127 +23,137 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="#470FF4">
+                    android:background="#F39B6D">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="@dimen/_276sdp"
-                        android:layout_height="@dimen/_525sdp"
-                        android:background="@drawable/dash_layout"
+                        android:layout_width="378dp"
+                        android:layout_height="679dp"
+                        android:background="@drawable/shadowpanel"
                         app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
+                        app:layout_constraintBottom_toBottomOf="parent">
 
-                    <Spinner
-                            android:layout_width="237dp"
-                            android:layout_height="66dp"
-                            android:background="#AA4465"
-                            android:id="@+id/spinner"
-                            android:textColor="@color/black"
-                            android:textColorHint="@color/black"
-                            app:layout_constraintStart_toStartOf="parent"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="352dp"
+                            android:layout_height="647dp"
+                            android:background="@drawable/dash_layout"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.2"
-                            app:layout_constraintTop_toBottomOf="@+id/checkBox"
-                            android:layout_marginTop="32dp" />
-
-                    <Button
-                            android:text="Add user"
-                            android:layout_width="139dp"
-                            android:layout_height="49dp"
-                            android:drawableLeft="@drawable/adduser"
-                            android:id="@+id/buttonadd"
-                            android:background="@drawable/button"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            android:layout_marginStart="28dp"
-                            android:layout_marginBottom="@dimen/_32sdp"
-                            app:layout_constraintTop_toBottomOf="@+id/spinner"
-                            app:layout_constraintVertical_bias="0.623" />
+                            app:layout_constraintTop_toTopOf="parent">
 
-                    <Button
-                            android:text="Go back"
-                            android:layout_width="@dimen/_120sdp"
-                            android:layout_height="@dimen/_40sdp"
-                            android:background="@drawable/button"
-                            android:id="@+id/buttonback"
-                            app:layout_constraintStart_toEndOf="@+id/buttonadd"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintHorizontal_bias="0.555"
-                            android:layout_marginBottom="@dimen/_32sdp"
-                            app:layout_constraintTop_toBottomOf="@+id/spinner"
-                            app:layout_constraintVertical_bias="0.614" />
+                        <Spinner
+                                android:layout_width="237dp"
+                                android:layout_height="66dp"
+                                android:background="@color/blue"
+                                android:id="@+id/spinner"
+                                android:textColor="@color/black"
+                                android:textColorHint="@color/black"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.243"
+                                app:layout_constraintTop_toBottomOf="@+id/checkBox"
+                                android:layout_marginTop="28dp" />
 
-                    <CheckBox
-                            android:text="Check to see the password"
-                            android:layout_width="310dp"
-                            android:layout_height="60dp"
-                            android:buttonTint="@color/black"
-                            android:textColor="@color/black"
-                            android:id="@+id/checkBox"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.489"
-                            app:layout_constraintTop_toBottomOf="@+id/passwordfield"
-                            android:layout_marginTop="28dp" />
+                        <Button
+                                android:text="Add user"
+                                android:layout_width="139dp"
+                                android:layout_height="49dp"
+                                android:drawableLeft="@drawable/adduser"
+                                android:id="@+id/buttonadd"
+                                android:background="@drawable/button"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                android:layout_marginStart="28dp"
+                                android:layout_marginBottom="@dimen/_32sdp"
+                                app:layout_constraintTop_toBottomOf="@+id/spinner"
+                                app:layout_constraintVertical_bias="0.623" />
 
-                    <EditText
-                            android:layout_width="@dimen/_230sdp"
-                            android:layout_height="@dimen/_43sdp"
-                            android:hint="Enter your Password"
-                            android:textColorHint="@color/black"
-                            android:inputType="textPassword"
-                            android:ems="10"
-                            android:id="@+id/passwordfield"
-                            android:textColorHighlight="@color/black"
-                            android:textColor="@color/black"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.4"
-                            app:layout_constraintTop_toBottomOf="@+id/usernamefield"
-                            android:layout_marginTop="28dp" />
+                        <Button
+                                android:text="Go back"
+                                android:layout_width="@dimen/_120sdp"
+                                android:layout_height="@dimen/_40sdp"
+                                android:background="@drawable/button"
+                                android:id="@+id/buttonback"
+                                app:layout_constraintStart_toEndOf="@+id/buttonadd"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintHorizontal_bias="0.555"
+                                android:layout_marginBottom="@dimen/_32sdp"
+                                app:layout_constraintTop_toBottomOf="@+id/spinner"
+                                app:layout_constraintVertical_bias="0.614" />
 
-                    <EditText
-                            android:layout_width="@dimen/_230sdp"
-                            android:layout_height="@dimen/_43sdp"
-                            android:inputType="text"
-                            android:textColorHint="@color/black"
-                            android:hint="Enter your Username"
-                            android:textColor="@color/black"
-                            android:ems="10"
-                            android:id="@+id/usernamefield"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView3"
-                            android:layout_marginTop="44dp"
-                            app:layout_constraintHorizontal_bias="0.4" />
+                        <CheckBox
+                                android:text="Check to see the password"
+                                android:layout_width="310dp"
+                                android:layout_height="60dp"
+                                android:buttonTint="@color/black"
+                                android:textColor="@color/black"
+                                android:id="@+id/checkBox"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.489"
+                                app:layout_constraintTop_toBottomOf="@+id/passwordfield"
+                                android:layout_marginTop="28dp" />
 
-                    <TextView
-                            android:text="Enter your credentials"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/textView3"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_25sdp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView31"
-                            android:layout_marginTop="@dimen/_15sdp" />
+                        <EditText
+                                android:layout_width="@dimen/_230sdp"
+                                android:layout_height="@dimen/_43sdp"
+                                android:hint="Enter your Password"
+                                android:textColorHint="@color/black"
+                                android:inputType="textPassword"
+                                android:ems="10"
+                                android:id="@+id/passwordfield"
+                                android:textColorHighlight="@color/black"
+                                android:textColor="@color/black"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.4"
+                                app:layout_constraintTop_toBottomOf="@+id/usernamefield"
+                                android:layout_marginTop="28dp" />
 
-                    <TextView
-                            android:text="Add User"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/textView31"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_30sdp"
-                            android:textColorHint="@color/black"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            android:layout_marginTop="4dp"
-                            app:layout_constraintHorizontal_bias="0.512" />
+                        <EditText
+                                android:layout_width="@dimen/_230sdp"
+                                android:layout_height="@dimen/_43sdp"
+                                android:inputType="text"
+                                android:textColorHint="@color/black"
+                                android:hint="Enter your Username"
+                                android:textColor="@color/black"
+                                android:ems="10"
+                                android:id="@+id/usernamefield"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/textView3"
+                                android:layout_marginTop="44dp"
+                                app:layout_constraintHorizontal_bias="0.4" />
+
+                        <TextView
+                                android:text="Enter your credentials"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView3"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_25sdp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/textView31"
+                                android:layout_marginTop="@dimen/_15sdp" />
+
+                        <TextView
+                                android:text="Add User"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView31"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_30sdp"
+                                android:textColorHint="@color/black"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                android:layout_marginTop="4dp"
+                                app:layout_constraintHorizontal_bias="0.512" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
