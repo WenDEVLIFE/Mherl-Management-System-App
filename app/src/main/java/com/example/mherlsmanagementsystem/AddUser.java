@@ -12,25 +12,35 @@ import com.google.android.material.navigation.NavigationView;
 
 public class AddUser extends AppCompatActivity {
 
-    private FloatingActionButton add;
-    private TextView usernametext;
+    FloatingActionButton add;
+    TextView usernametext, RoleText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_user);
+
+        Intent intent = getIntent();
+        String username = intent.getStringExtra("username");
+        String role = intent.getStringExtra("role");
 
         // Floating action button
         add = findViewById(R.id.floating_add_user);
         add.setOnClickListener(v -> {
-            Intent intent = new Intent(AddUser.this, CreateUser.class);
-            startActivity(intent);
+            Intent intent1 = new Intent(AddUser.this, CreateUser.class);
+            startActivity(intent1);
+            intent1.putExtra("username", username);
+            intent1.putExtra("role", role);
             finish();
         });
 
+
+
         NavigationView navigationView = findViewById(R.id.nav_view);
         usernametext = navigationView.getHeaderView(0).findViewById(R.id.username);
-        usernametext.setText("Username: AdminUser");
+        usernametext.setText("Username:" + username);
+        RoleText.setText("Role:" + role);;
 
         // event listener of the navigation view
         navigationView.setNavigationItemSelectedListener(item -> {
@@ -38,8 +48,10 @@ public class AddUser extends AppCompatActivity {
             if (id == R.id.navigation_home) {
 
                 // Handle navigation_home action
-                Intent intent = new Intent(AddUser.this, SystemDashboard.class);
-                startActivity(intent);
+                Intent intent1 = new Intent(AddUser.this, SystemDashboard.class);
+                startActivity(intent1);
+                intent1.putExtra("username", username);
+                intent1.putExtra("role", role);
                 finish();
 
 
@@ -77,8 +89,10 @@ public class AddUser extends AppCompatActivity {
                 alert.setTitle("Logout");
                 alert.setMessage("Are you sure you want to logout?");
                 alert.setButton(AlertDialog.BUTTON_POSITIVE, "Yes", (dialog, which) -> {
-                    Intent intent = new Intent(AddUser.this, MainActivity.class);
-                    startActivity(intent);
+                    Intent intent2 = new Intent(AddUser.this, MainActivity.class);
+                    startActivity(intent2);
+                    intent2.putExtra("username", username);
+                    intent2.putExtra("role", role);
                     finish();
                 });
                 alert.setButton(AlertDialog.BUTTON_NEGATIVE, "No", (dialog, which) -> {

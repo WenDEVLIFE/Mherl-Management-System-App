@@ -25,7 +25,7 @@ import functions.UserCreationListener;
 public class CreateUser extends AppCompatActivity implements UserCreationListener {
 
 
-     TextView usernametext;
+    TextView usernametext, RoleText;
 
      Button adduser, back;
 
@@ -106,7 +106,8 @@ public class CreateUser extends AppCompatActivity implements UserCreationListene
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         usernametext = navigationView.getHeaderView(0).findViewById(R.id.username);
-        usernametext.setText("Username: AdminUser");
+        usernametext.setText("Username:" + username);
+        RoleText.setText("Role:" + role);
 
         // event listener of the navigation view
         navigationView.setNavigationItemSelectedListener(item -> {

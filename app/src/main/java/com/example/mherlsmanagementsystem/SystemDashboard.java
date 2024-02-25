@@ -18,7 +18,7 @@ import java.time.LocalTime;
 
 public class SystemDashboard extends AppCompatActivity {
 
-    private TextView usernametext;
+    TextView usernametext, RoleText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,9 +86,16 @@ public class SystemDashboard extends AppCompatActivity {
             }
         }
 
+        Intent intent = getIntent();
+        String username = intent.getStringExtra("username");
+        String role = intent.getStringExtra("role");
+
+
         NavigationView navigationView = findViewById(R.id.nav_view);
         usernametext = navigationView.getHeaderView(0).findViewById(R.id.username);
-        usernametext.setText("Username: AdminUser");
+        RoleText = navigationView.getHeaderView(0).findViewById(R.id.Role);
+        usernametext.setText("Username:" + username);
+        RoleText.setText("Role:" + role);
 
       // event listener of the navigation view
         navigationView.setNavigationItemSelectedListener(item -> {
@@ -123,8 +130,10 @@ public class SystemDashboard extends AppCompatActivity {
                 alerts.setMessage("You are already in the Notification Page");
                 alerts.show();
                 // Handle create_user action
-                Intent intent = new Intent(SystemDashboard.this, AddUser.class);
-                startActivity(intent);
+                Intent intent1 = new Intent(SystemDashboard.this, AddUser.class);
+                startActivity(intent1);
+                intent1.putExtra("username", username);
+                intent1.putExtra("role", role);
                 finish();
             }
             else if (id == R.id.appinfo) {
@@ -142,8 +151,8 @@ public class SystemDashboard extends AppCompatActivity {
                 alert.setTitle("Logout");
                 alert.setMessage("Are you sure you want to logout?");
                 alert.setButton(AlertDialog.BUTTON_POSITIVE, "Yes", (dialog, which) -> {
-                    Intent intent = new Intent(SystemDashboard.this, MainActivity.class);
-                    startActivity(intent);
+                    Intent intent2 = new Intent(SystemDashboard.this, MainActivity.class);
+                    startActivity(intent2);
                     finish();
             });
             alert.setButton(AlertDialog.BUTTON_NEGATIVE, "No", (dialog, which) -> {

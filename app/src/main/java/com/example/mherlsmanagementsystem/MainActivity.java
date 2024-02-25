@@ -1,16 +1,26 @@
 package com.example.mherlsmanagementsystem;
 
+import static android.content.ContentValues.TAG;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import functions.User;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText editText , passwordText;
 
-
+    DatabaseReference database = FirebaseDatabase.getInstance().getReference();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,22 +39,60 @@ public class MainActivity extends AppCompatActivity {
 
         button = findViewById(R.id.loginbutton);
         button.setOnClickListener(v -> {
-            // Do something in response to button click
 
-            // Write a message to the database
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
-            DatabaseReference myRef = database.getReference("message");
+            String enteredUsername = editText.getText().toString();
+            String enteredPassword = passwordText.getText().toString();
 
-            myRef.setValue("Hello, World!");
+            database.child("users").child(enteredUsername).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        // Get user information
+                        User user = dataSnapshot.getValue(User.class);
 
-            AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
-            alertDialog.setTitle("Alert");
-            alertDialog.setMessage("Welcome to MHERLS Management System");
-            alertDialog.show();
+                        if (user.getPassword().equals(enteredPassword)) {
+                            // User password matches entered password
+                            // Login successful
+                            // Navigate to next activity here
 
-            Intent intent = new Intent(MainActivity.this, SystemDashboard.class);
-            startActivity(intent);
-            finish();
+
+                            String userRole = user.getRole();
+                            // Write a message to the database
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            DatabaseReference myRef = database.getReference("message");
+
+                            myRef.setValue("Hello, World!");
+
+                            AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+                            alertDialog.setTitle("Alert");
+                            alertDialog.setMessage("Welcome to MHERLS Management System");
+                            alertDialog.show();
+
+                            Intent intent = new Intent(MainActivity.this, SystemDashboard.class);
+                            startActivity(intent);
+
+                            intent.putExtra("username", enteredUsername);
+                            intent.putExtra("role", userRole);
+                            finish();
+
+                        } else {
+                            // User password does not match entered password
+                            // Login failed
+                            Toast.makeText(MainActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        // User does not exist
+                        Toast.makeText(MainActivity.this, "User does not exist.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    // Getting user failed
+                    Log.w(TAG, "loadUser:onCancelled", databaseError.toException());
+                }
+            });
 
         });
 
