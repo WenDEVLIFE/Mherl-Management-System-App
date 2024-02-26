@@ -5,20 +5,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.NumberPicker;
 import android.widget.TextView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class Product extends AppCompatActivity {
+public class CreateProducts extends AppCompatActivity {
     TextView usernametext, RoleText;
-
-    FloatingActionButton addproducts;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product);
+        setContentView(R.layout.activity_create_products);
+
 
 
         // Get the intent from the previous activity
@@ -26,19 +25,8 @@ public class Product extends AppCompatActivity {
         String username = intent.getStringExtra("username");
         String role = intent.getStringExtra("role");
 
-        // This is for floating button actions
-        addproducts = findViewById(R.id.floating_add_product);
-        addproducts.setOnClickListener(v -> {
 
-            // This method is for adding products
-            Intent intent1 = new Intent(Product.this, CreateProducts.class);
-            intent1.putExtra( "username", username);
-            intent1.putExtra("role", role);
-            startActivity(intent1);
-
-
-        });
-
+        // Our navagation view
         NavigationView navigationView = findViewById(R.id.nav_view);
         usernametext = navigationView.getHeaderView(0).findViewById(R.id.username);
         RoleText = navigationView.getHeaderView(0).findViewById(R.id.Role);
@@ -51,7 +39,7 @@ public class Product extends AppCompatActivity {
             if (id == R.id.navigation_home) {
 
                 // Handle navigation_home action
-                AlertDialog alertDialog = new AlertDialog.Builder(Product.this).create();
+                AlertDialog alertDialog = new AlertDialog.Builder(CreateProducts.this).create();
                 alertDialog.setTitle("Alert");
                 alertDialog.setMessage("You are already in the Home Page");
                 alertDialog.show();
@@ -60,7 +48,7 @@ public class Product extends AppCompatActivity {
             } else if (id == R.id.navigation_product) {
 
                 // alerts
-                AlertDialog alerts = new AlertDialog.Builder(Product.this).create();
+                AlertDialog alerts = new AlertDialog.Builder(CreateProducts.this).create();
                 alerts.setTitle("Alert");
                 alerts.setMessage("You are already in the Product page");
                 alerts.show();
@@ -68,7 +56,7 @@ public class Product extends AppCompatActivity {
             } else if (id == R.id.navigation_notifications) {
 
                 // alerts
-                AlertDialog alerts = new AlertDialog.Builder(Product.this).create();
+                AlertDialog alerts = new AlertDialog.Builder(CreateProducts.this).create();
                 alerts.setTitle("Alert");
                 alerts.setMessage("You are already in the Notification Page");
                 alerts.show();
@@ -77,12 +65,12 @@ public class Product extends AppCompatActivity {
             } else if (id == R.id.create_user) {
 
                 // This will go to add user
-                AlertDialog alerts = new AlertDialog.Builder(Product.this).create();
+                AlertDialog alerts = new AlertDialog.Builder(CreateProducts.this).create();
                 alerts.setTitle("Alert");
                 alerts.setMessage("You are already in the Notification Page");
                 alerts.show();
                 // Handle create_user action
-                Intent intent1 = new Intent(Product.this, AddUser.class);
+                Intent intent1 = new Intent(CreateProducts.this, AddUser.class);
                 intent1.putExtra("username", username);
                 intent1.putExtra("role", role);
                 startActivity(intent1);
@@ -90,7 +78,7 @@ public class Product extends AppCompatActivity {
             }
             else if (id == R.id.appinfo) {
 
-                AlertDialog alerts = new AlertDialog.Builder(Product.this).create();
+                AlertDialog alerts = new AlertDialog.Builder(CreateProducts.this).create();
                 alerts.setTitle("Alert");
                 alerts.setMessage("You are already in the Notification Page1");
                 alerts.show();
@@ -99,11 +87,11 @@ public class Product extends AppCompatActivity {
             else if (id == R.id.logoutid) {
 
                 // This is logout action
-                AlertDialog alert = new AlertDialog.Builder(Product.this).create();
+                AlertDialog alert = new AlertDialog.Builder(CreateProducts.this).create();
                 alert.setTitle("Logout");
                 alert.setMessage("Are you sure you want to logout?");
                 alert.setButton(AlertDialog.BUTTON_POSITIVE, "Yes", (dialog, which) -> {
-                    Intent intent2 = new Intent(Product.this, MainActivity.class);
+                    Intent intent2 = new Intent(CreateProducts.this, MainActivity.class);
                     startActivity(intent2);
                     finish();
 
@@ -126,4 +114,5 @@ public class Product extends AppCompatActivity {
         });
 
     }
+
 }

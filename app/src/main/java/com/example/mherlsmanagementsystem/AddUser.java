@@ -59,6 +59,8 @@ public class AddUser extends AppCompatActivity implements UserAdapter.OnDeleteCl
         // Floating action button
         add = findViewById(R.id.floating_add_user);
         add.setOnClickListener(v -> {
+
+            // This will go to create user class
             Intent intent1 = new Intent(AddUser.this, CreateUser.class);
             intent1.putExtra("username", username);
             intent1.putExtra("role", role);
@@ -69,7 +71,7 @@ public class AddUser extends AppCompatActivity implements UserAdapter.OnDeleteCl
         // This will load the user
         LoadUser();
 
-        //This is for recycleview
+        //This is for recycle view
         // it has its function to display
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -293,7 +295,7 @@ public class AddUser extends AppCompatActivity implements UserAdapter.OnDeleteCl
     }
 
     @Override
-    public void onLongPress(MotionEvent e) {
+    public void onLongPress(@NonNull MotionEvent e) {
 
     }
 
