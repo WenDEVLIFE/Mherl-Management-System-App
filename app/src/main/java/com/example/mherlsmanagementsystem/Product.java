@@ -7,15 +7,25 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class Product extends AppCompatActivity {
     TextView usernametext, RoleText;
+
+    FloatingActionButton addproducts;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
+
+        // This is for floating button actions
+        addproducts = findViewById(R.id.floating_add_product);
+        addproducts.setOnClickListener(v -> {
+
+
+        });
 
 
         // Get the intent from the previous activity
@@ -42,12 +52,16 @@ public class Product extends AppCompatActivity {
 
 
             } else if (id == R.id.navigation_product) {
-                AlertDialog alertDialog = new AlertDialog.Builder(Product.this).create();
-                alertDialog.setTitle("Alert");
-                alertDialog.setMessage("You are already in the Product Page");
-                alertDialog.show();
+
+                // alerts
+                AlertDialog alerts = new AlertDialog.Builder(Product.this).create();
+                alerts.setTitle("Alert");
+                alerts.setMessage("You are already in the Product page");
+                alerts.show();
                 // Handle navigation_product action
             } else if (id == R.id.navigation_notifications) {
+
+                // alerts
                 AlertDialog alerts = new AlertDialog.Builder(Product.this).create();
                 alerts.setTitle("Alert");
                 alerts.setMessage("You are already in the Notification Page");

@@ -72,6 +72,18 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:layout_width="63dp"
+                        android:layout_height="61dp"
+                        android:clickable="true"
+                        app:srcCompat="@drawable/sales"
+                        android:id="@+id/floating_add_product"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintHorizontal_bias="0.988"
+                        android:layout_marginBottom="4dp" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </FrameLayout>

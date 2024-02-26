@@ -25,18 +25,54 @@
                     android:layout_height="match_parent"
                     android:background="#F39B6D">
 
-                <TextView
-                        android:text="@string/add_user"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/textView3"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_35sdp"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="377dp"
+                        android:layout_height="63dp"
+                        android:background="@drawable/shadowpanel"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_marginTop="4dp"
-                        app:layout_constraintHorizontal_bias="0.497" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintHorizontal_bias="0.529"
+                        android:id="@+id/constraintLayout9"
+                        android:layout_marginTop="4dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="@dimen/_285sdp"
+                            android:layout_height="@dimen/_37sdp"
+                            android:background="@drawable/dash_layout"
+                            android:id="@+id/constraintLayout"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent">
+
+                        <ImageView
+                                android:layout_width="62dp"
+                                android:layout_height="42dp"
+                                app:srcCompat="@drawable/user_1077012"
+                                android:id="@+id/sunrisegif"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                                android:text="User"
+                                android:layout_width="@dimen/_236sdp"
+                                android:layout_height="@dimen/_30sdp"
+                                android:textColor="@color/black"
+                                android:id="@+id/textView"
+                                android:fontFamily="sans-serif-condensed"
+                                android:textSize="@dimen/_20sdp"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/sunrisegif"
+                                android:layout_marginStart="2dp"
+                                app:layout_constraintHorizontal_bias="1.0"
+                                app:layout_constraintVertical_bias="0.555" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                         android:layout_width="@dimen/_63sdp"
@@ -60,10 +96,9 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.407"
-                        android:layout_marginBottom="12dp"
-                        android:layout_marginTop="5dp"
-                        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+                        app:layout_constraintHorizontal_bias="0.476"
+                        android:layout_marginBottom="16dp"
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout9" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </FrameLayout>

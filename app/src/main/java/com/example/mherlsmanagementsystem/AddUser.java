@@ -4,10 +4,13 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,7 +31,7 @@ import java.util.List;
 import functions.User;
 import functions.UserAdapter;
 
-public class AddUser extends AppCompatActivity implements UserAdapter.OnDeleteClickListener {
+public class AddUser extends AppCompatActivity implements UserAdapter.OnDeleteClickListener, GestureDetector.OnGestureListener {
 
     FloatingActionButton add;
     TextView usernametext, RoleText;
@@ -40,6 +43,8 @@ public class AddUser extends AppCompatActivity implements UserAdapter.OnDeleteCl
     private UserAdapter adapter;
     private List<User> userList;
     DatabaseReference myRef;
+
+    private GestureDetector gestureDetector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +78,7 @@ public class AddUser extends AppCompatActivity implements UserAdapter.OnDeleteCl
         recyclerView.setAdapter(adapter);
 
         adapter.setOnDeleteClickListener(this); // Ensure MainActivity implements OnDeleteClickListener
-
+        gestureDetector = new GestureDetector(this, this);
 
         // This is for navbar
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -96,17 +101,17 @@ public class AddUser extends AppCompatActivity implements UserAdapter.OnDeleteCl
 
 
             } else if (id == R.id.navigation_product) {
-                AlertDialog alertDialog = new AlertDialog.Builder(AddUser.this).create();
-                alertDialog.setTitle("Alert");
-                alertDialog.setMessage("You are already in the Product Page");
-                alertDialog.show();
-                // Handle navigation_product action
-            } else if (id == R.id.navigation_notifications) {
+
+                // This will go to product class
                 Intent intent1 = new Intent(AddUser.this, Product.class);
                 intent1.putExtra("username", username);
                 intent1.putExtra("role", role);
                 startActivity(intent1);
                 finish();
+
+                // Handle navigation_product action
+            } else if (id == R.id.navigation_notifications) {
+
 
                 // Handle navigation_notifications action
             } else if (id == R.id.create_user) {
@@ -119,6 +124,8 @@ public class AddUser extends AppCompatActivity implements UserAdapter.OnDeleteCl
 
             }
             else if (id == R.id.appinfo) {
+
+                // alerts
                 AlertDialog alerts = new AlertDialog.Builder(AddUser.this).create();
                 alerts.setTitle("Alert");
                 alerts.setMessage("You are already in the Notification Page1");
@@ -126,6 +133,8 @@ public class AddUser extends AppCompatActivity implements UserAdapter.OnDeleteCl
 
             }
             else if (id == R.id.logoutid) {
+
+                // This will ask the user to logout
                 AlertDialog alert = new AlertDialog.Builder(AddUser.this).create();
                 alert.setTitle("Logout");
                 alert.setMessage("Are you sure you want to logout?");
@@ -208,6 +217,7 @@ public class AddUser extends AppCompatActivity implements UserAdapter.OnDeleteCl
         builder.show();
     }
 
+    // This for delete method of user
     private void deleteComplaintFromDatabase(User info) {
         String username = info.getUsername();
 
@@ -254,5 +264,52 @@ public class AddUser extends AppCompatActivity implements UserAdapter.OnDeleteCl
             dialog.dismiss();
         });
         builder.show();
+    }
+
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        // Pass touch events to the GestureDetector
+        return gestureDetector.onTouchEvent(event) || super.onTouchEvent(event);
+    }
+
+    @Override
+    public boolean onDown(@NonNull MotionEvent e) {
+        return true;
+    }
+
+    @Override
+    public void onShowPress(@NonNull MotionEvent e) {
+    }
+
+    @Override
+    public boolean onSingleTapUp(@NonNull MotionEvent e) {
+        return true;
+    }
+
+    @Override
+    public boolean onScroll(MotionEvent e1, @NonNull MotionEvent e2, float distanceX, float distanceY) {
+        return true;
+    }
+
+    @Override
+    public void onLongPress(MotionEvent e) {
+
+    }
+
+    @Override
+    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+        // Check for upward swipe and reload the activity
+        assert e1 != null;
+        if (e1.getY() > e2.getY()) {
+            reloadActivity();
+            return true;
+        }
+        return false;
+    }
+
+    // Function to reload the activity
+    private void reloadActivity() {
+        recreate();
     }
 }
