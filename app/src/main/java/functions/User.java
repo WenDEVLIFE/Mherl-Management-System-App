@@ -46,4 +46,13 @@ public class User {
         User user = (User) obj;
         return user.username.equals(username) && user.role.equals(role);
     }
+
+    public String Username() {
+        return username;
+
+    }
+
+    public String Role() {
+        return role;
+    }
 }

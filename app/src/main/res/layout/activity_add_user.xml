@@ -51,6 +51,16 @@
                         android:layout_marginBottom="16dp"
                         android:contentDescription="@string/todo"
                         android:focusable="true" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="384dp"
+                        android:layout_height="639dp"
+                        android:id="@+id/recyclerView"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.407"
+                        android:layout_marginBottom="4dp" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </FrameLayout>
