@@ -101,10 +101,16 @@ public class CreateUser extends AppCompatActivity implements UserCreationListene
                 if(password1.length()>=8){
                     boolean hasSpecial = hasSpecialCharacters(password1);
                     boolean hasUppercase = HasUpperCase(password1);
+
+                    // This will check if it has a special character
                     if(hasSpecial && hasUppercase){
+
+                        // send to the firebase controller
                         FirebaseController send = FirebaseController.getInstance();
                         send.setUserCreationListener(this);
                         send.CreateUser(username1, password1, role1);
+
+
                     } else{
                         Toast.makeText(CreateUser.this, "Password must contain at least one special character or an Uppercase", Toast.LENGTH_SHORT).show();
                     }
@@ -128,7 +134,7 @@ public class CreateUser extends AppCompatActivity implements UserCreationListene
             finish();
         });
 
-
+        // This is navigation bar
         NavigationView navigationView = findViewById(R.id.nav_view);
         usernametext = navigationView.getHeaderView(0).findViewById(R.id.username);
         RoleText = navigationView.getHeaderView(0).findViewById(R.id.Role);

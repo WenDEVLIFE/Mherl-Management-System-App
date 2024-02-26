@@ -151,6 +151,8 @@ public class AddUser extends AppCompatActivity implements UserAdapter.OnDeleteCl
         });
 
     }
+
+    // This is where we load the user from the database to recycleviewer
     public void LoadUser(){
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();

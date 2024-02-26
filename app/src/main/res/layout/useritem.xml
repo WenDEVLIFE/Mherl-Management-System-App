@@ -5,12 +5,12 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:background="@drawable/dash_layout">
 
     <TextView
             android:id="@+id/complaintNameTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_320sdp"
+            android:layout_height="@dimen/_48sdp"
             android:textSize="@dimen/_20sdp"
             android:textStyle="bold"
             android:textColor="@color/black"
@@ -23,8 +23,8 @@
 
     <TextView
             android:id="@+id/complaintTextView"
-            android:layout_width="410dp"
-            android:layout_height="58dp"
+            android:layout_width="@dimen/_320sdp"
+            android:layout_height="@dimen/_48sdp"
             android:textColor="@color/black"
             android:textSize="@dimen/_20sdp"
             android:padding="8dp"
@@ -36,8 +36,8 @@
 
     <Button
             android:id="@+id/deleteButton"
-            android:layout_width="296dp"
-            android:layout_height="69dp"
+            android:layout_width="@dimen/_226sdp"
+            android:layout_height="@dimen/_49sdp"
             android:fontFamily="sans-serif-condensed"
             android:textSize="@dimen/_20sdp"
             android:textColor="@color/black"
