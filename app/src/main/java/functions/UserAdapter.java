@@ -1,4 +1,4 @@
-package com.example.mherlsmanagementsystem;
+package functions;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,9 +9,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.List;
+import com.example.mherlsmanagementsystem.R;
 
-import functions.User;
+import java.util.List;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
 

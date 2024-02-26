@@ -121,10 +121,11 @@ public class SystemDashboard extends AppCompatActivity {
 
 
             } else if (id == R.id.navigation_product) {
-                AlertDialog alertDialog = new AlertDialog.Builder(SystemDashboard.this).create();
-                alertDialog.setTitle("Alert");
-                alertDialog.setMessage("You are already in the Product Page");
-                alertDialog.show();
+                Intent intent1 = new Intent(SystemDashboard.this, Product.class);
+                intent1.putExtra("username", username);
+                intent1.putExtra("role", role);
+                startActivity(intent1);
+                finish();
                 // Handle navigation_product action
             } else if (id == R.id.navigation_notifications) {
                 AlertDialog alerts = new AlertDialog.Builder(SystemDashboard.this).create();

@@ -13,6 +13,9 @@
             android:theme="@style/Theme.MherlsManagementSystem"
             tools:targetApi="31">
         <activity
+                android:name=".Product"
+                android:exported="false" />
+        <activity
                 android:name=".CreateUser"
                 android:exported="false" />
         <activity

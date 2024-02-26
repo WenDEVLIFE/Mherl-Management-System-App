@@ -25,8 +25,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import FirebaseController.FirebaseController;
 import functions.User;
+import functions.UserAdapter;
 
 public class AddUser extends AppCompatActivity implements UserAdapter.OnDeleteClickListener {
 
@@ -102,10 +102,11 @@ public class AddUser extends AppCompatActivity implements UserAdapter.OnDeleteCl
                 alertDialog.show();
                 // Handle navigation_product action
             } else if (id == R.id.navigation_notifications) {
-                AlertDialog alerts = new AlertDialog.Builder(AddUser.this).create();
-                alerts.setTitle("Alert");
-                alerts.setMessage("You are already in the Notification Page");
-                alerts.show();
+                Intent intent1 = new Intent(AddUser.this, Product.class);
+                intent1.putExtra("username", username);
+                intent1.putExtra("role", role);
+                startActivity(intent1);
+                finish();
 
                 // Handle navigation_notifications action
             } else if (id == R.id.create_user) {
