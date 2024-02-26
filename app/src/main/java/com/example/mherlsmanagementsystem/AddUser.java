@@ -227,6 +227,10 @@ public class AddUser extends AppCompatActivity implements UserAdapter.OnDeleteCl
             }
         });
     }
+
+    // This method is to handle the back button
+    // we add Supper.onBackPressed() to handle the back button
+    // Override the onBackPressed method
     @SuppressLint("MissingSuperCall")
     @Override
     public void onBackPressed() {

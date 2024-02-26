@@ -185,6 +185,11 @@ public class SystemDashboard extends AppCompatActivity {
         });
 
     }
+
+
+    // This method is to handle the back button
+    // we add Supper.onBackPressed() to handle the back button
+    // Override the onBackPressed method
     @SuppressLint("MissingSuperCall")
     @Override
     public void onBackPressed() {

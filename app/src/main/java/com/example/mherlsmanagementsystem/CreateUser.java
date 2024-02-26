@@ -14,12 +14,15 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseError;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import FirebaseController.FirebaseController;
 import functions.UserCreationListener;
@@ -94,13 +97,26 @@ public class CreateUser extends AppCompatActivity implements UserCreationListene
                 return;
             } else {
 
-                FirebaseController send = FirebaseController.getInstance();
-                send.setUserCreationListener(this);
-                send.CreateUser(username1, password1, role1);
+                // This will check ifi t has a length of 8 or greater
+                if(password1.length()>=8){
+                    boolean hasSpecial = hasSpecialCharacters(password1);
+                    boolean hasUppercase = HasUpperCase(password1);
+                    if(hasSpecial && hasUppercase){
+                        FirebaseController send = FirebaseController.getInstance();
+                        send.setUserCreationListener(this);
+                        send.CreateUser(username1, password1, role1);
+                    } else{
+                        Toast.makeText(CreateUser.this, "Password must contain at least one special character or an Uppercase", Toast.LENGTH_SHORT).show();
+                    }
+                } else{
+                    Toast.makeText(CreateUser.this, "Password must be at least 8 characters", Toast.LENGTH_SHORT).show();
+                }
+
 
 
             }
         });
+
 
         // This is for the back button
         back = findViewById(R.id.buttonback);
@@ -232,6 +248,9 @@ public class CreateUser extends AppCompatActivity implements UserCreationListene
 
     }
 
+    // This method is to handle the back button
+    // we add Supper.onBackPressed() to handle the back button
+    // Override the onBackPressed method
     @SuppressLint("MissingSuperCall")
     @Override
     public void onBackPressed() {
@@ -252,6 +271,21 @@ public class CreateUser extends AppCompatActivity implements UserCreationListene
             dialog.dismiss();
         });
         builder.show();
+    }
+
+    // This will check if it has a special character
+    public boolean hasSpecialCharacters(String password1) {
+        Pattern pattern = Pattern.compile("[^a-zA-Z0-9]");
+        Matcher matcher = pattern.matcher(password1);
+        return matcher.find();
+    }
+
+    public boolean HasUpperCase(String password1){
+        Pattern uppercasePattern = Pattern.compile("[A-Z]");
+        Matcher uppercaseMatcher = uppercasePattern.matcher(password1);
+        boolean hasUppercase = uppercaseMatcher.find();
+
+        return  hasUppercase;
     }
 
 }
