@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 
@@ -13,11 +14,31 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class CreateProducts extends AppCompatActivity {
     TextView usernametext, RoleText;
+
+    Button add, back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_products);
 
+        add = findViewById(R.id.buttonadd);
+        add.setOnClickListener(v -> {
+            // This is for adding products
+            AlertDialog alertDialog = new AlertDialog.Builder(CreateProducts.this).create();
+            alertDialog.setTitle("Alert");
+            alertDialog.setMessage("Product Added Successfully");
+            alertDialog.show();
+
+
+        });
+
+        back = findViewById(R.id.buttonback);
+        back.setOnClickListener(v -> {
+            // This is for going back to the product page
+            Intent intent = new Intent(CreateProducts.this, Product.class);
+            startActivity(intent);
+            finish();
+        });
 
 
         // Get the intent from the previous activity

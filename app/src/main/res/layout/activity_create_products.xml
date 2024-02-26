@@ -82,8 +82,8 @@
                         app:layout_constraintTop_toBottomOf="@+id/constraintLayout9">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="352dp"
-                            android:layout_height="647dp"
+                            android:layout_width="@dimen/_252sdp"
+                            android:layout_height="@dimen/_500sdp"
                             android:background="@drawable/dash_layout"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -115,8 +115,8 @@
                                 android:layout_marginBottom="160dp" />
 
                         <EditText
-                                android:layout_width="@dimen/_230sdp"
-                                android:layout_height="@dimen/_43sdp"
+                                android:layout_width="@dimen/_232sdp"
+                                android:layout_height="@dimen/_52sdp"
                                 android:inputType="text"
                                 android:textColorHint="@color/black"
                                 android:hint="Price"
@@ -130,21 +130,22 @@
                                 app:layout_constraintHorizontal_bias="0.452" />
 
                         <EditText
-                                android:layout_width="292dp"
-                                android:layout_height="62dp"
+                                android:layout_width="@dimen/_232sdp"
+                                android:layout_height="@dimen/_52sdp"
                                 android:inputType="text"
                                 android:textColorHint="@color/black"
                                 android:hint="Quantity"
                                 android:textColor="@color/black"
                                 android:ems="10"
                                 android:id="@+id/quantity"
-                                tools:layout_editor_absoluteX="28dp"
                                 app:layout_constraintTop_toBottomOf="@+id/productname"
-                                android:layout_marginTop="60dp" />
+                                android:layout_marginTop="60dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent" />
 
                         <EditText
-                                android:layout_width="292dp"
-                                android:layout_height="62dp"
+                                android:layout_width="@dimen/_232sdp"
+                                android:layout_height="@dimen/_52sdp"
                                 android:inputType="text"
                                 android:textColorHint="@color/black"
                                 android:hint="Product Name"
