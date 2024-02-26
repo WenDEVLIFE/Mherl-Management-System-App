@@ -9,8 +9,8 @@
 
     <TextView
             android:id="@+id/complaintNameTextView"
-            android:layout_width="@dimen/_320sdp"
-            android:layout_height="@dimen/_48sdp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:textSize="@dimen/_20sdp"
             android:textStyle="bold"
             android:textColor="@color/black"
