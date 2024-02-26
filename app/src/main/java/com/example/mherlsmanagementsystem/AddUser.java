@@ -1,5 +1,6 @@
 package com.example.mherlsmanagementsystem;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -160,12 +161,14 @@ public class AddUser extends AppCompatActivity implements UserAdapter.OnDeleteCl
             public void onDataChange(DataSnapshot dataSnapshot) {
                 userList.clear();
 
+                // This will retrieve from the database
                 for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
                     String Username = userSnapshot.child("username").getValue(String.class);
                     String Role = userSnapshot.child("role").getValue(String.class);
                     userList.add(new User(Username, Role)); // Removed "User" and "Role" prefix
                 }
 
+                // This is for the adapter
                 adapter.notifyDataSetChanged();
             }
 
@@ -223,5 +226,26 @@ public class AddUser extends AppCompatActivity implements UserAdapter.OnDeleteCl
                 Toast.makeText(AddUser.this, "Failed to delete username from database", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    @SuppressLint("MissingSuperCall")
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Logout");
+        builder.setMessage("Are you sure you want to logout?");
+        builder.setPositiveButton("Yes", (dialog, which) -> {
+            // LOGOUT CLASS
+            Intent intent = new Intent(AddUser.this, MainActivity.class);
+            startActivity(intent);
+            FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+            // To sign out the current user
+            mAuth.signOut();
+            finish();
+        });
+        builder.setNegativeButton("No", (dialog, which) -> {
+            dialog.dismiss();
+        });
+        builder.show();
     }
 }

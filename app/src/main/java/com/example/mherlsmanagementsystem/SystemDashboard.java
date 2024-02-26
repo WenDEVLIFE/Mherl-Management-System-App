@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -183,6 +184,27 @@ public class SystemDashboard extends AppCompatActivity {
             return true;
         });
 
+    }
+    @SuppressLint("MissingSuperCall")
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Logout");
+        builder.setMessage("Are you sure you want to logout?");
+        builder.setPositiveButton("Yes", (dialog, which) -> {
+            // LOGOUT CLASS
+            Intent intent = new Intent(SystemDashboard.this, MainActivity.class);
+            startActivity(intent);
+            FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+            // To sign out the current user
+            mAuth.signOut();
+            finish();
+        });
+        builder.setNegativeButton("No", (dialog, which) -> {
+            dialog.dismiss();
+        });
+        builder.show();
     }
 
 }

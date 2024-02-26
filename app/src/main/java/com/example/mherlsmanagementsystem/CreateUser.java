@@ -3,6 +3,7 @@ package com.example.mherlsmanagementsystem;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Observable;
 import android.os.Bundle;
@@ -187,7 +188,6 @@ public class CreateUser extends AppCompatActivity implements UserCreationListene
             return true;
         });
     }
-
     @Override
     public void onSuccess() {
         runOnUiThread(() -> {
@@ -231,4 +231,27 @@ public class CreateUser extends AppCompatActivity implements UserCreationListene
         });
 
     }
+
+    @SuppressLint("MissingSuperCall")
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Logout");
+        builder.setMessage("Are you sure you want to logout?");
+        builder.setPositiveButton("Yes", (dialog, which) -> {
+            // LOGOUT CLASS
+            Intent intent = new Intent(CreateUser.this, MainActivity.class);
+            startActivity(intent);
+            FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+            // To sign out the current user
+            mAuth.signOut();
+            finish();
+        });
+        builder.setNegativeButton("No", (dialog, which) -> {
+            dialog.dismiss();
+        });
+        builder.show();
+    }
+
 }
