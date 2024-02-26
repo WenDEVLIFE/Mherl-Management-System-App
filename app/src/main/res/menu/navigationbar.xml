@@ -8,13 +8,13 @@
 
     <item
             android:id="@+id/navigation_product"
-            android:icon="@drawable/sales"
+            android:icon="@drawable/add"
             android:tint="@color/black"
             android:title="Add product" />
 
     <item
             android:id="@+id/navigation_notifications"
-            android:icon="@drawable/seesales"
+            android:icon="@drawable/pesos"
             android:tint="@color/black"
             android:title="Sales" />
     <item
