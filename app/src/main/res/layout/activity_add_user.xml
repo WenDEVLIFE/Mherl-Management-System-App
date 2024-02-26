@@ -53,14 +53,15 @@
                         android:focusable="true" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                        android:layout_width="384dp"
-                        android:layout_height="639dp"
+                        android:layout_width="@dimen/_300sdp"
+                        android:layout_height="@dimen/_490sdp"
                         android:id="@+id/recyclerView"
+                        android:background="@drawable/dash_layout"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.407"
-                        android:layout_marginBottom="4dp" />
+                        android:layout_marginBottom="12dp" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </FrameLayout>

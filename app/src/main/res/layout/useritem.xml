@@ -4,7 +4,8 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/white">
 
     <TextView
             android:id="@+id/complaintNameTextView"
@@ -35,8 +36,8 @@
 
     <Button
             android:id="@+id/deleteButton"
-            android:layout_width="299dp"
-            android:layout_height="66dp"
+            android:layout_width="296dp"
+            android:layout_height="69dp"
             android:fontFamily="sans-serif-condensed"
             android:textSize="@dimen/_20sdp"
             android:textColor="@color/black"
@@ -45,7 +46,7 @@
             android:onClick="onDeleteButtonClick"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/complaintTextView"
-            android:layout_marginStart="68dp"
+            android:layout_marginStart="56dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

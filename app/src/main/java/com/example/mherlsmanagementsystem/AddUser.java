@@ -153,17 +153,17 @@ public class AddUser extends AppCompatActivity implements UserAdapter.OnDeleteCl
     public void LoadUser(){
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-          myRef = database.getReference("Users");
+        myRef = database.getReference("Users");
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 userList.clear();
 
-                for (DataSnapshot complaintSnapshot : dataSnapshot.getChildren()) {
-                    String Username = complaintSnapshot.child("username").getValue(String.class);
-                    String Role = complaintSnapshot.child("role").getValue(String.class);
-                    userList.add(new User("User" + Username, "Role" + Role));
+                for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+                    String Username = userSnapshot.child("username").getValue(String.class);
+                    String Role = userSnapshot.child("role").getValue(String.class);
+                    userList.add(new User(Username, Role)); // Removed "User" and "Role" prefix
                 }
 
                 adapter.notifyDataSetChanged();
@@ -180,16 +180,17 @@ public class AddUser extends AppCompatActivity implements UserAdapter.OnDeleteCl
     public void onDeleteClick(int position) {
         // yes or no alert
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Delete Complaint");
-        builder.setMessage("Are you sure you want to delete this complaint?");
+        builder.setTitle("Delete User");
+        builder.setMessage("Are you sure you want to delete this user?");
         builder.setPositiveButton("Yes", (dialog, which) -> {
             if (position >= 0 && position < userList.size()) {
-                String user = usernametext.getText().toString();
-                if (user.equals(username)) {
+                User userToDelete = userList.get(position);
+                String userToDeleteUsername = userToDelete.getUsername();
+
+                if (userToDeleteUsername.equals(username)) {
                     Toast.makeText(AddUser.this, "You can only delete your username ", Toast.LENGTH_SHORT).show();
                 } else {
-                    User deletedComplaint = userList.get(position);
-                    deleteComplaintFromDatabase(deletedComplaint);
+                    deleteComplaintFromDatabase(userToDelete);
                     userList.remove(position);
                     adapter.notifyItemRemoved(position);
                 }
@@ -199,11 +200,10 @@ public class AddUser extends AppCompatActivity implements UserAdapter.OnDeleteCl
             // Do nothing
         });
         builder.show();
-
     }
 
-    private void deleteComplaintFromDatabase(User deletedComplaint) {
-        String username = deletedComplaint.getUsername();
+    private void deleteComplaintFromDatabase(User info) {
+        String username = info.getUsername();
 
         Log.d("FirebaseDelete", "Deleting complaint with content: " +username);
 
@@ -220,7 +220,7 @@ public class AddUser extends AppCompatActivity implements UserAdapter.OnDeleteCl
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(AddUser.this, "Failed to delete complaint from database", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddUser.this, "Failed to delete username from database", Toast.LENGTH_SHORT).show();
             }
         });
     }

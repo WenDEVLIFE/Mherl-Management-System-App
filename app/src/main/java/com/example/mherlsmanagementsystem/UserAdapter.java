@@ -13,7 +13,7 @@ import java.util.List;
 
 import functions.User;
 
-public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ComplaintViewHolder> {
+public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
 
     private List<User> userlist;
     private OnDeleteClickListener onDeleteClickListener;
@@ -32,16 +32,16 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ComplaintViewH
 
     @NonNull
     @Override
-    public ComplaintViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.useritem, parent, false);
-        return new ComplaintViewHolder(view);
+        return new UserViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ComplaintViewHolder holder, int position) {
-        User complaint = userlist.get(position);
+    public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
+        User info = userlist.get(position);
 
-        holder.bind(complaint);
+        holder.bind(info);
     }
 
     @Override
@@ -50,7 +50,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ComplaintViewH
     }
 
     // ViewHolder class
-    public class ComplaintViewHolder extends RecyclerView.ViewHolder {
+    public class UserViewHolder extends RecyclerView.ViewHolder {
 
         // Views in your item layout
         private final TextView Username;
@@ -58,7 +58,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ComplaintViewH
 
         private final Button deleteButton;
 
-        public ComplaintViewHolder(@NonNull View itemView) {
+        public UserViewHolder(@NonNull View itemView) {
             super(itemView);
             // Initialize views
             Username = itemView.findViewById(R.id.complaintNameTextView);
@@ -75,10 +75,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ComplaintViewH
             });
         }
 
-        public void bind(User complaint) {
+        public void bind(User info) {
             // Bind data to views
-            Username.setText(complaint.Username());
-            Role.setText(complaint.Role());
+            Username.setText(info.Username());
+            Role.setText(info.Role());
 
         }
     }
