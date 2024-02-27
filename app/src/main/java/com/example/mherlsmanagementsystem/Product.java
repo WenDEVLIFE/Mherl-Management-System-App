@@ -53,6 +53,9 @@ public class Product extends AppCompatActivity implements ProductAdapter.OnDelet
         adapter = new ProductAdapter(productlist);
         recyclerView.setAdapter(adapter);
 
+        adapter.setOnDeleteClickListener(this); // Ensure MainActivity implements OnDeleteClickListener
+        adapter.setOnEditClickListener(this);
+
         // Load the product
         LoadUser();
 
@@ -165,7 +168,7 @@ public class Product extends AppCompatActivity implements ProductAdapter.OnDelet
     public void LoadUser(){
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("Product");
+        myRef = database.getReference("Products");
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
