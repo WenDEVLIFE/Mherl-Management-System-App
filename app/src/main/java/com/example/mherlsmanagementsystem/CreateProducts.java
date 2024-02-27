@@ -6,14 +6,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseError;
 
-public class CreateProducts extends AppCompatActivity {
+import FirebaseController.FirebaseController;
+import functions.CreateListener;
+
+public class CreateProducts extends AppCompatActivity implements CreateListener {
+
+    private CreateListener createListener;
+
     TextView usernametext, RoleText;
+
+    EditText product, price, quantity;
 
     Button add, back;
     @Override
@@ -21,14 +31,27 @@ public class CreateProducts extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_products);
 
+         product = findViewById(R.id.productname);
+         quantity = findViewById(R.id.quantity);
+         price = findViewById(R.id.Pricefield);
+
         add = findViewById(R.id.buttonadd);
         add.setOnClickListener(v -> {
             // This is for adding products
-            AlertDialog alertDialog = new AlertDialog.Builder(CreateProducts.this).create();
-            alertDialog.setTitle("Alert");
-            alertDialog.setMessage("Product Added Successfully");
-            alertDialog.show();
+            String productname = product.getText().toString();
+            String quantity_products = quantity.getText().toString();
+            String price_input = price.getText().toString();
 
+            if(productname.isEmpty() || quantity_products.isEmpty() || price_input.isEmpty()){
+                AlertDialog alertDialog = new AlertDialog.Builder(CreateProducts.this).create();
+                alertDialog.setTitle("Alert");
+                alertDialog.setMessage("Please fill all the fields");
+                alertDialog.show();
+                return;
+            } else{
+                 FirebaseController firebaseController = FirebaseController.getInstance();
+                 firebaseController.CreateProduct(productname, quantity_products, price_input);
+            }
 
         });
 
@@ -132,6 +155,48 @@ public class CreateProducts extends AppCompatActivity {
                 return false;
             }
             return true;
+        });
+
+    }
+
+    @Override
+    public void onSuccess() {
+        runOnUiThread(() -> {
+
+            // This will show the alert dialog
+            AlertDialog dialog = new AlertDialog.Builder(CreateProducts.this).create();
+            dialog.setTitle("Created a product");
+            dialog.setMessage("You successfully created a product");
+            dialog.show();
+
+
+            // This will set default value of the fields
+
+        });
+    }
+
+    @Override
+    public void onFailure() {
+        runOnUiThread(() -> {
+
+            // This will show the alert dialog
+            AlertDialog alertDialog = new AlertDialog.Builder(CreateProducts.this).create();
+            alertDialog.setTitle("Alert");
+            alertDialog.setMessage("Product already exists");
+            alertDialog.show();
+        });
+
+    }
+
+    @Override
+    public void onError(DatabaseError databaseError) {
+        runOnUiThread(() -> {
+
+            // This will show the alert dialog
+            AlertDialog alertDialog = new AlertDialog.Builder(CreateProducts.this).create();
+            alertDialog.setTitle("Alert");
+            alertDialog.setMessage("Error: " + databaseError.getMessage());
+            alertDialog.show();
         });
 
     }

@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import functions.CreateListener;
 import functions.User;
 import functions.UserCreationListener;
 
@@ -19,6 +20,9 @@ public class FirebaseController {
 
     // This used for listener
     private UserCreationListener userCreationListener;
+
+    private CreateListener createListener;
+
 
     // This is firebase Singleton
     private static FirebaseController instance;
@@ -100,4 +104,52 @@ public class FirebaseController {
     }
 
 
+    public void CreateProduct(String productname, String quantityProducts, String priceInput) {
+
+        // Get the product child
+        DatabaseReference productsRef = Database.child("Products");
+
+        productsRef.orderByChild("productname").equalTo(productname).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    // Product already exists
+                    // You can handle this case as you see fit, for example, show a message to the user
+                    if (createListener != null) {
+
+                        // This is for the failure
+                        createListener.onFailure();
+                    }
+                } else {
+                    // Product does not exist, create new product
+                    // Id
+
+                    String productId = UUID.randomUUID().toString();
+
+                    // This is for hashmap
+                    Map<String, Object> product = new HashMap<>();
+                    product.put("productname", productname);
+                    product.put("quantity", quantityProducts);
+                    product.put("price", priceInput);
+
+                    // then insert the value in hashmap
+                    productsRef.child(productId).setValue(product);
+
+                    // This is for the success
+                    createListener.onSuccess();
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle possible errors.
+                if (createListener != null) {
+
+                    // This is for the error
+                    createListener.onError(databaseError);
+                }
+            }
+        });
+    }
 }
