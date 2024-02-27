@@ -66,7 +66,8 @@ public class AddUser extends AppCompatActivity implements UserAdapter.OnDeleteCl
             intent1.putExtra("role", role);
             startActivity(intent1);
             finish();
-        });
+
+                    });
 
         // This will load the user
         LoadUser();

@@ -38,7 +38,8 @@ public class Product extends AppCompatActivity implements ProductAdapter.OnDelet
 
     private ProductAdapter adapter;
     private List<ProductBase> productlist;
-
+    String username;
+    String role;
     DatabaseReference myRef;
 
     @Override
@@ -62,7 +63,7 @@ public class Product extends AppCompatActivity implements ProductAdapter.OnDelet
 
         // Get the intent from the previous activity
         Intent intent = getIntent();
-        String username = intent.getStringExtra("username");
+        username = intent.getStringExtra("username");
         String role = intent.getStringExtra("role");
 
         // This is for floating button actions
@@ -245,11 +246,13 @@ public class Product extends AppCompatActivity implements ProductAdapter.OnDelet
 
         // This is for the edit button
         ProductBase product = productlist.get(position);
-        Intent intent = new Intent(Product.this, SystemDashboard.class);
+        Intent intent = new Intent(Product.this, BuyProduct.class);
+        intent.putExtra("username",username);
+        intent.putExtra("role", role);
         intent.putExtra("productname", product.getProductname());
-        intent.putExtra("price", product.getPrice());
-        intent.putExtra("quantity", product.getQuantity());
+
         startActivity(intent);
+        finish();
 
 
 

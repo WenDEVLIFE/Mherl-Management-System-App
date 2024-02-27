@@ -2,6 +2,7 @@ package FirebaseController;
 
 import androidx.annotation.NonNull;
 
+import com.example.mherlsmanagementsystem.BuyProduct;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,6 +23,8 @@ public class FirebaseController {
     private UserCreationListener userCreationListener;
 
     private CreateListener createListener;
+
+    private BuyProduct buyProduct;
 
 
     // This is firebase Singleton
@@ -53,6 +56,11 @@ public class FirebaseController {
     public void setCreateListener(CreateListener createListener) {
         // CreateListener is an interface
         this.createListener = createListener;
+    }
+
+    public void setBuyListener(BuyProduct buyProduct) {
+        this.buyProduct = buyProduct;
+
     }
 
     // This method will create a user
@@ -162,4 +170,76 @@ public class FirebaseController {
             }
         });
     }
+
+    public void BuyProduct(String productname1, int productquantity1) {
+        DatabaseReference productsRef = Database.child("Products");
+
+        // get the product name
+        productsRef.orderByChild("productname").equalTo(productname1).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        int quantity = snapshot.child("quantity").getValue(Integer.class);
+                        String price = snapshot.child("price").getValue(String.class);
+                            if (quantity >= productquantity1) {
+
+                                // This will check if the product is not null
+                                if (buyProduct != null) {
+
+                                    // This will update the quantity of the product
+                                    int newQuantity = quantity - productquantity1;
+
+                                    // This will update the quantity of the product
+                                    snapshot.getRef().child("quantity").setValue(newQuantity);
+
+                                    // This will get the price of the product
+                                    int price_value = Integer.parseInt(price);
+
+                                    // This will get the total price of the product
+                                    int total_price = price_value * productquantity1;
+
+
+                                    // This will insert the sales on the database
+                                    DatabaseReference salesRef = Database.child("Sales");
+
+                                    // This will create a unique id
+                                    String salesId = UUID.randomUUID().toString();
+
+                                    // This is for hashmap
+                                    Map<String, Object> sale = new HashMap<>();
+                                    sale.put("productname", productname1);
+                                    sale.put("quantity", productquantity1);
+                                    sale.put("price", total_price);
+
+                                    // then insert the value in hashmap
+                                    salesRef.child(salesId).setValue(sale);
+
+
+                                    // This is for the success
+                                    buyProduct.onSuccess();
+                                }
+
+
+                        } else {
+                            // This is for the failure
+                            buyProduct.onFailure();
+
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle possible errors.
+                if (buyProduct != null) {
+
+                    // This is for the error
+                    buyProduct.onError(databaseError);
+                }
+            }
+        });
+    }
+
 }
