@@ -53,7 +53,8 @@ public class Product extends AppCompatActivity implements ProductAdapter.OnDelet
         adapter = new ProductAdapter(productlist);
         recyclerView.setAdapter(adapter);
 
-        adapter.setOnDeleteClickListener(this); // Ensure MainActivity implements OnDeleteClickListener
+        // Ensure MainActivity implements OnDeleteClickListener
+        adapter.setOnDeleteClickListener(this);
         adapter.setOnEditClickListener(this);
 
         // Load the product
@@ -198,7 +199,7 @@ public class Product extends AppCompatActivity implements ProductAdapter.OnDelet
     public void onDeleteClick(int position) {
         // yes or no alert
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Delete User");
+        builder.setTitle("Delete Product?");
         builder.setMessage("Are you sure you want to delete this user?");
         builder.setPositiveButton("Yes", (dialog, which) -> {
             if (position >= 0 && position < productlist.size()) {

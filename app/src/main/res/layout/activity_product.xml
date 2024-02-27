@@ -32,7 +32,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintHorizontal_bias="0.529"
+                        app:layout_constraintHorizontal_bias="0.47"
                         android:id="@+id/constraintLayout9"
                         android:layout_marginTop="16dp">
 
@@ -94,7 +94,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintHorizontal_bias="0.476"
-                        app:layout_constraintVertical_bias="0.733" />
+                        app:layout_constraintVertical_bias="0.428" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
