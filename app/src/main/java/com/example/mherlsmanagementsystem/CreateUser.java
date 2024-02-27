@@ -107,7 +107,11 @@ public class CreateUser extends AppCompatActivity implements UserCreationListene
 
                         // send to the firebase controller
                         FirebaseController send = FirebaseController.getInstance();
+
+                        // send the listener
                         send.setUserCreationListener(this);
+
+                        // send it on the parameters
                         send.CreateUser(username1, password1, role1);
 
 

@@ -19,7 +19,6 @@ import functions.CreateListener;
 
 public class CreateProducts extends AppCompatActivity implements CreateListener {
 
-    private CreateListener createListener;
 
     TextView usernametext, RoleText;
 
@@ -31,26 +30,41 @@ public class CreateProducts extends AppCompatActivity implements CreateListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_products);
 
+
+        // Id of the fields
          product = findViewById(R.id.productname);
          quantity = findViewById(R.id.quantity);
          price = findViewById(R.id.Pricefield);
 
+         // Add products button
         add = findViewById(R.id.buttonadd);
         add.setOnClickListener(v -> {
             // This is for adding products
             String productname = product.getText().toString();
-            String quantity_products = quantity.getText().toString();
+            int quantity_products = Integer.parseInt(quantity.getText().toString());
             String price_input = price.getText().toString();
 
-            if(productname.isEmpty() || quantity_products.isEmpty() || price_input.isEmpty()){
+            if(productname.isEmpty() || price_input.isEmpty()){
                 AlertDialog alertDialog = new AlertDialog.Builder(CreateProducts.this).create();
                 alertDialog.setTitle("Alert");
-                alertDialog.setMessage("Please fill all the fields");
+                alertDialog.setMessage("Please fill all the fields or input a value");
                 alertDialog.show();
                 return;
             } else{
-                 FirebaseController firebaseController = FirebaseController.getInstance();
-                 firebaseController.CreateProduct(productname, quantity_products, price_input);
+               if (quantity_products>=1){
+                   FirebaseController firebaseController = FirebaseController.getInstance();
+
+                   // Add the createlistener
+                   firebaseController.setCreateListener(this);
+
+                   // Then send it to the parameters
+                   firebaseController.CreateProduct(productname, quantity_products, price_input);
+               } else{
+                     AlertDialog alertDialog = new AlertDialog.Builder(CreateProducts.this).create();
+                     alertDialog.setTitle("Alert");
+                     alertDialog.setMessage("Please input a value greater than 0");
+                     alertDialog.show();
+               }
             }
 
         });

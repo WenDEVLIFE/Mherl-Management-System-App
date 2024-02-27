@@ -50,6 +50,11 @@ public class FirebaseController {
         this.userCreationListener = userCreationListener;
     }
 
+    public void setCreateListener(CreateListener createListener) {
+        // CreateListener is an interface
+        this.createListener = createListener;
+    }
+
     public void CreateUser(String username1, String password1, String role1) {
         DatabaseReference usersRef = Database.child("Users");
         usersRef.orderByChild("username").equalTo(username1).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -104,7 +109,7 @@ public class FirebaseController {
     }
 
 
-    public void CreateProduct(String productname, String quantityProducts, String priceInput) {
+    public void CreateProduct(String productname, int quantityProducts, String priceInput) {
 
         // Get the product child
         DatabaseReference productsRef = Database.child("Products");
@@ -121,22 +126,25 @@ public class FirebaseController {
                         createListener.onFailure();
                     }
                 } else {
-                    // Product does not exist, create new product
-                    // Id
+                    if (createListener != null) {
 
-                    String productId = UUID.randomUUID().toString();
+                        // Product does not exist, create new product
+                        // Id
 
-                    // This is for hashmap
-                    Map<String, Object> product = new HashMap<>();
-                    product.put("productname", productname);
-                    product.put("quantity", quantityProducts);
-                    product.put("price", priceInput);
+                        String productId = UUID.randomUUID().toString();
 
-                    // then insert the value in hashmap
-                    productsRef.child(productId).setValue(product);
+                        // This is for hashmap
+                        Map<String, Object> product = new HashMap<>();
+                        product.put("productname", productname);
+                        product.put("quantity", quantityProducts);
+                        product.put("price", priceInput);
 
-                    // This is for the success
-                    createListener.onSuccess();
+                        // then insert the value in hashmap
+                        productsRef.child(productId).setValue(product);
+
+                        // This is for the success
+                        createListener.onSuccess();
+                    }
 
                 }
             }
