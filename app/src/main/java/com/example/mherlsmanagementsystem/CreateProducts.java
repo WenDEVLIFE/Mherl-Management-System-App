@@ -172,6 +172,10 @@ public class CreateProducts extends AppCompatActivity implements CreateListener 
 
             // This will set default value of the fields
 
+            product.setText("");
+            price.setText("");
+            quantity.setText("");
+
         });
     }
 
