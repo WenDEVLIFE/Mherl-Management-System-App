@@ -6,9 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,7 +32,7 @@ import functions.ProductBase;
 import functions.User;
 import functions.UserAdapter;
 
-public class Product extends AppCompatActivity implements ProductAdapter.OnDeleteClickListener, ProductAdapter.OnEditClickListener {
+public class Product extends AppCompatActivity implements ProductAdapter.OnDeleteClickListener, ProductAdapter.OnEditClickListener, GestureDetector.OnGestureListener {
     TextView usernametext, RoleText;
 
     FloatingActionButton addproducts;
@@ -41,6 +44,8 @@ public class Product extends AppCompatActivity implements ProductAdapter.OnDelet
     String username;
     String role;
     DatabaseReference myRef;
+
+    private GestureDetector gestureDetector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -261,5 +266,78 @@ public class Product extends AppCompatActivity implements ProductAdapter.OnDelet
 
 
 
+    }
+
+    // This method is to handle the back button
+    // we add Supper.onBackPressed() to handle the back button
+    // Override the onBackPressed method
+    @SuppressLint("MissingSuperCall")
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Logout");
+        builder.setMessage("Are you sure you want to logout?");
+        builder.setPositiveButton("Yes", (dialog, which) -> {
+            // LOGOUT CLASS
+            Intent intent = new Intent(Product.this, MainActivity.class);
+            startActivity(intent);
+            FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+            // To sign out the current user
+            mAuth.signOut();
+            finish();
+        });
+        builder.setNegativeButton("No", (dialog, which) -> {
+            dialog.dismiss();
+        });
+        builder.show();
+    }
+
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        // Pass touch events to the GestureDetector
+        return gestureDetector.onTouchEvent(event) || super.onTouchEvent(event);
+    }
+
+    // This is for gesture
+    @Override
+    public boolean onDown(@NonNull MotionEvent e) {
+        return true;
+    }
+
+    @Override
+    public void onShowPress(@NonNull MotionEvent e) {
+    }
+
+    @Override
+    public boolean onSingleTapUp(@NonNull MotionEvent e) {
+        return true;
+    }
+
+    @Override
+    public boolean onScroll(MotionEvent e1, @NonNull MotionEvent e2, float distanceX, float distanceY) {
+        return true;
+    }
+
+    @Override
+    public void onLongPress(@NonNull MotionEvent e) {
+
+    }
+
+    @Override
+    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+        // Check for upward swipe and reload the activity
+        assert e1 != null;
+        if (e1.getY() > e2.getY()) {
+            reloadActivity();
+            return true;
+        }
+        return false;
+    }
+
+    // Function to reload the activity
+    private void reloadActivity() {
+        recreate();
     }
 }
