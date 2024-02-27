@@ -2,6 +2,7 @@ package com.example.mherlsmanagementsystem;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,8 +15,14 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseError;
 
+import java.util.List;
+
 import FirebaseController.FirebaseController;
 import functions.CreateListener;
+import functions.ProductAdapter;
+import functions.ProductBase;
+import functions.User;
+import functions.UserAdapter;
 
 public class CreateProducts extends AppCompatActivity implements CreateListener {
 
@@ -25,6 +32,7 @@ public class CreateProducts extends AppCompatActivity implements CreateListener 
     EditText product, price, quantity;
 
     Button add, back;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +77,8 @@ public class CreateProducts extends AppCompatActivity implements CreateListener 
 
         });
 
+
+        // This is back function to go back into the Create Product page huhuh 1:00 am
         back = findViewById(R.id.buttonback);
         back.setOnClickListener(v -> {
             // This is for going back to the product page

@@ -55,6 +55,7 @@ public class FirebaseController {
         this.createListener = createListener;
     }
 
+    // This method will create a user
     public void CreateUser(String username1, String password1, String role1) {
         DatabaseReference usersRef = Database.child("Users");
         usersRef.orderByChild("username").equalTo(username1).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -109,6 +110,7 @@ public class FirebaseController {
     }
 
 
+    // This method is used to insert create a product
     public void CreateProduct(String productname, int quantityProducts, String priceInput) {
 
         // Get the product child
