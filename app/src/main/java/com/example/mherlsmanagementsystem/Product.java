@@ -79,6 +79,7 @@ public class Product extends AppCompatActivity implements ProductAdapter.OnDelet
 
         });
 
+        // This is for the navigation view
         NavigationView navigationView = findViewById(R.id.nav_view);
         usernametext = navigationView.getHeaderView(0).findViewById(R.id.username);
         RoleText = navigationView.getHeaderView(0).findViewById(R.id.Role);
@@ -128,6 +129,8 @@ public class Product extends AppCompatActivity implements ProductAdapter.OnDelet
                 startActivity(intent1);
                 finish();
             }
+
+            // This is for the app info
             else if (id == R.id.appinfo) {
 
                 AlertDialog alerts = new AlertDialog.Builder(Product.this).create();
@@ -204,6 +207,8 @@ public class Product extends AppCompatActivity implements ProductAdapter.OnDelet
         builder.setMessage("Are you sure you want to delete this user?");
         builder.setPositiveButton("Yes", (dialog, which) -> {
             if (position >= 0 && position < productlist.size()) {
+
+                // This is for the delete method
                 ProductBase productdelete= productlist.get(position);
                 deleteComplaintFromDatabase(productdelete);
                 productlist.remove(position);
@@ -244,7 +249,7 @@ public class Product extends AppCompatActivity implements ProductAdapter.OnDelet
     @Override
     public void onEditClick(int position) {
 
-        // This is for the edit button
+        // This is for the Buy button
         ProductBase product = productlist.get(position);
         Intent intent = new Intent(Product.this, BuyProduct.class);
         intent.putExtra("username",username);

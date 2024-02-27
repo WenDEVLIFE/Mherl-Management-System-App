@@ -31,16 +31,25 @@ public class BuyProduct extends AppCompatActivity implements BuyListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buy_product);
 
+        // This will get the intent from the previous page
         Intent intent = getIntent();
         username = intent.getStringExtra("username");
         role = intent.getStringExtra("role");
         Productname = intent.getStringExtra("productname");
 
+        // Then get the product name to the Edit Text
         productname = findViewById(R.id.productname);
+
+        // set test the product name from previous intent
         productname.setText(Productname);
+
+        // Set Editable false
         productname.setEnabled(false);
+
+        // This is for product quantity
         productquantity = findViewById(R.id.quantity);
 
+        // Buy button
        buy = findViewById(R.id.buttonadd);
        buy.setOnClickListener(v -> {
            // This will add the product to the database
@@ -48,6 +57,7 @@ public class BuyProduct extends AppCompatActivity implements BuyListener {
            String productname1 = productname.getText().toString();
            int productquantity1 = Integer.parseInt(productquantity.getText().toString());
 
+           // Then to check if the quantity is less than 0
            if (productquantity1 <= 0) {
                AlertDialog alertDialog = new AlertDialog.Builder(BuyProduct.this).create();
                alertDialog.setTitle("Alert");
@@ -55,6 +65,7 @@ public class BuyProduct extends AppCompatActivity implements BuyListener {
                alertDialog.show();
            } else {
 
+               // Else it will procede to insert the value from the Firebase
                 FirebaseController buyproduct = FirebaseController.getInstance();
                 buyproduct.setBuyListener(BuyProduct.this);
                 buyproduct.BuyProduct(productname1, productquantity1);
@@ -65,7 +76,7 @@ public class BuyProduct extends AppCompatActivity implements BuyListener {
 
         });
 
-
+       // Back to the product page
        back = findViewById(R.id.buttonback);
        back.setOnClickListener(v -> {
                     // This will go back to the product page
@@ -77,6 +88,7 @@ public class BuyProduct extends AppCompatActivity implements BuyListener {
                 });
 
 
+       // Our navigation view
         NavigationView navigationView = findViewById(R.id.nav_view);
         usernametext = navigationView.getHeaderView(0).findViewById(R.id.username);
         RoleText = navigationView.getHeaderView(0).findViewById(R.id.Role);
@@ -86,6 +98,8 @@ public class BuyProduct extends AppCompatActivity implements BuyListener {
         // event listener of the navigation view
         navigationView.setNavigationItemSelectedListener(item -> {
             int id = item.getItemId();
+
+            // This will go to home or dashboard
             if (id == R.id.navigation_home) {
 
                 // Handle navigation_home action
@@ -94,7 +108,7 @@ public class BuyProduct extends AppCompatActivity implements BuyListener {
                 alertDialog.setMessage("You are already in the Home Page");
                 alertDialog.show();
 
-
+             // This will go to navigation product
             } else if (id == R.id.navigation_product) {
                 Intent intent1 = new Intent(BuyProduct.this, Product.class);
                 intent1.putExtra("username", username);
@@ -170,7 +184,7 @@ public class BuyProduct extends AppCompatActivity implements BuyListener {
             // This will show the alert dialog
             AlertDialog dialog = new AlertDialog.Builder(BuyProduct.this).create();
             dialog.setTitle("Created a product");
-            dialog.setMessage("You successfully created a product");
+            dialog.setMessage("You successfully buy a product");
             dialog.show();
 
 

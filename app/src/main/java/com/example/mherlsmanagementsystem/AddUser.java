@@ -52,6 +52,7 @@ public class AddUser extends AppCompatActivity implements UserAdapter.OnDeleteCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_user);
 
+        // This will get the intent from the previous page
         Intent intent = getIntent();
         username = intent.getStringExtra("username");
         role = intent.getStringExtra("role");
@@ -102,7 +103,7 @@ public class AddUser extends AppCompatActivity implements UserAdapter.OnDeleteCl
                 startActivity(intent1);
                 finish();
 
-
+                // This will go to home or dashboard
             } else if (id == R.id.navigation_product) {
 
                 // This will go to product class
@@ -126,6 +127,8 @@ public class AddUser extends AppCompatActivity implements UserAdapter.OnDeleteCl
                 // Handle create_user action
 
             }
+
+            // This is for the app info
             else if (id == R.id.appinfo) {
 
                 // alerts
@@ -168,9 +171,13 @@ public class AddUser extends AppCompatActivity implements UserAdapter.OnDeleteCl
     // This is where we load the user from the database to recycleviewer
     public void LoadUser(){
 
+        // This is for the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+        // This is for the reference
         myRef = database.getReference("Users");
 
+        // This is for the event listener
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -276,6 +283,7 @@ public class AddUser extends AppCompatActivity implements UserAdapter.OnDeleteCl
         return gestureDetector.onTouchEvent(event) || super.onTouchEvent(event);
     }
 
+    // This is for gesture
     @Override
     public boolean onDown(@NonNull MotionEvent e) {
         return true;

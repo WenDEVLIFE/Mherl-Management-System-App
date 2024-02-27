@@ -210,7 +210,7 @@ public class FirebaseController {
                                     Map<String, Object> sale = new HashMap<>();
                                     sale.put("productname", productname1);
                                     sale.put("quantity", productquantity1);
-                                    sale.put("price", total_price);
+                                    sale.put("totalprice", total_price);
 
                                     // then insert the value in hashmap
                                     salesRef.child(salesId).setValue(sale);
