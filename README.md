@@ -1,4 +1,6 @@
 Mherl Management System
+
+
 The purpose of this app is to store products, and sales.
 
 Login Page
@@ -19,6 +21,7 @@ Add Product
 ![image](https://github.com/WenDEVLIFE/Mherl-Management-System-App/assets/117834496/41cfd745-6154-4e52-aeb9-c6a2f960ec58)
 
 Sales
+
 ![Uploading image.png…]()
 
 
