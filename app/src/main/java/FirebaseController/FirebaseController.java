@@ -1,5 +1,6 @@
 package FirebaseController;
 
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,6 +13,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -68,7 +70,7 @@ public class FirebaseController {
     }
 
     // This method will create a user
-    public void CreateUser(String username1, String password1, String role1) {
+    public void CreateUser(String username1, String password1, String role1, EditText username) {
         DatabaseReference usersRef = Database.child("Users");
         usersRef.orderByChild("username").equalTo(username1).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -103,6 +105,28 @@ public class FirebaseController {
                         // This is for the success
                         userCreationListener.onSuccess();
 
+                        LocalDate date = null;
+                        LocalTime time = null;
+                        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                            // This is for the report
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            DatabaseReference reports = database.getReference("Reports");
+                            String ReportId = UUID.randomUUID().toString();
+                            date = LocalDate.now();
+                            time = LocalTime.now();
+                            String dateformat = date.toString();
+                            String timeformat = time.toString();
+
+                            Map <String, Object> report = new HashMap<>();
+                            report.put("username", username);
+                            report.put("Activity", "User Created");
+                            report.put("Date", dateformat);
+                            report.put("Time", timeformat);
+                            reports.child(ReportId).setValue(report);
+                        }
+
+
+
                     }
 
                 }
@@ -123,7 +147,7 @@ public class FirebaseController {
 
 
     // This method is used to insert create a product
-    public void CreateProduct(String productname, int quantityProducts, String priceInput) {
+    public void CreateProduct(String productname, int quantityProducts, String priceInput, String username) {
 
         // Get the product child
         DatabaseReference productsRef = Database.child("Products");
@@ -158,6 +182,27 @@ public class FirebaseController {
 
                         // This is for the success
                         createListener.onSuccess();
+
+
+                        LocalDate date = null;
+                        LocalTime time = null;
+                        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                            // This is for the report
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            DatabaseReference reports = database.getReference("Reports");
+                            String ReportId = UUID.randomUUID().toString();
+                            date = LocalDate.now();
+                            time = LocalTime.now();
+                            String dateformat = date.toString();
+                            String timeformat = time.toString();
+
+                            Map <String, Object> report = new HashMap<>();
+                            report.put("username", username);
+                            report.put("Activity", "User Created");
+                            report.put("Date", dateformat);
+                            report.put("Time", timeformat);
+                            reports.child(ReportId).setValue(report);
+                        }
                     }
 
                 }
@@ -175,7 +220,7 @@ public class FirebaseController {
         });
     }
 
-    public void BuyProduct(String productname1, int productquantity1) {
+    public void BuyProduct(String productname1, int productquantity1, String username) {
         DatabaseReference productsRef = Database.child("Products");
 
         // get the product name
@@ -236,6 +281,27 @@ public class FirebaseController {
 
                                         // This is for the success
                                         buyProduct.onSuccess();
+
+
+                                        LocalDate date1 = null;
+                                        LocalTime time = null;
+                                        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                                            // This is for the report
+                                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                            DatabaseReference reports = database.getReference("Reports");
+                                            String ReportId = UUID.randomUUID().toString();
+                                            date1 = LocalDate.now();
+                                            time = LocalTime.now();
+                                            String dateformat1 = date1.toString();
+                                            String timeformat = time.toString();
+
+                                            Map <String, Object> report = new HashMap<>();
+                                            report.put("username", username);
+                                            report.put("Activity", "User Created");
+                                            report.put("Date", dateformat1);
+                                            report.put("Time", timeformat);
+                                            reports.child(ReportId).setValue(report);
+                                        }
                                     }
 
                                 }
@@ -349,6 +415,7 @@ public class FirebaseController {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 // Handle possible errors.
+
 
             }
         });

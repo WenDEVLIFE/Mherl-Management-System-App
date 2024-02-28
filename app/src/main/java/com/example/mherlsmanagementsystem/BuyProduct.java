@@ -68,7 +68,7 @@ public class BuyProduct extends AppCompatActivity implements BuyListener {
                // Else it will procede to insert the value from the Firebase
                 FirebaseController buyproduct = FirebaseController.getInstance();
                 buyproduct.setBuyListener(BuyProduct.this);
-                buyproduct.BuyProduct(productname1, productquantity1);
+                buyproduct.BuyProduct(productname1, productquantity1, username);
 
            }
 

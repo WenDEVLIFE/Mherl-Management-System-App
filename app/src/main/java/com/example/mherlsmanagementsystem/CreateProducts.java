@@ -38,6 +38,10 @@ public class CreateProducts extends AppCompatActivity implements CreateListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_products);
 
+        // Get the intent from the previous activity
+        Intent intent = getIntent();
+        String username = intent.getStringExtra("username");
+        String role = intent.getStringExtra("role");
 
         // Id of the fields
          product = findViewById(R.id.productname);
@@ -66,7 +70,7 @@ public class CreateProducts extends AppCompatActivity implements CreateListener 
                    firebaseController.setCreateListener(this);
 
                    // Then send it to the parameters
-                   firebaseController.CreateProduct(productname, quantity_products, price_input);
+                   firebaseController.CreateProduct(productname, quantity_products, price_input, username);
                } else{
                      AlertDialog alertDialog = new AlertDialog.Builder(CreateProducts.this).create();
                      alertDialog.setTitle("Alert");
@@ -82,16 +86,13 @@ public class CreateProducts extends AppCompatActivity implements CreateListener 
         back = findViewById(R.id.buttonback);
         back.setOnClickListener(v -> {
             // This is for going back to the product page
-            Intent intent = new Intent(CreateProducts.this, Product.class);
-            startActivity(intent);
+            Intent intent1 = new Intent(CreateProducts.this, Product.class);
+            intent1.putExtra("username", username);
+            intent1.putExtra("role", role);
+            startActivity(intent1);
             finish();
         });
 
-
-        // Get the intent from the previous activity
-        Intent intent = getIntent();
-        String username = intent.getStringExtra("username");
-        String role = intent.getStringExtra("role");
 
 
         // Our navagation view

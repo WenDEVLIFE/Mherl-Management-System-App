@@ -23,8 +23,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import functions.ProductAdapter;
 import functions.ProductBase;
@@ -240,6 +245,27 @@ public class SalesProducts extends AppCompatActivity implements SalesAdapter.OnD
                     snapshot.getRef().removeValue();
 
                     Toast.makeText(SalesProducts.this, "Sales deleted", Toast.LENGTH_SHORT).show();
+
+
+                    LocalDate date = null;
+                    LocalTime time = null;
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                        // This is for the report
+                        FirebaseDatabase database = FirebaseDatabase.getInstance();
+                        DatabaseReference reports = database.getReference("Reports");
+                        String ReportId = UUID.randomUUID().toString();
+                        date = LocalDate.now();
+                        time = LocalTime.now();
+                        String dateformat = date.toString();
+                        String timeformat = time.toString();
+
+                        Map <String, Object> report = new HashMap<>();
+                        report.put("username", username);
+                        report.put("Activity", "User Created");
+                        report.put("Date", dateformat);
+                        report.put("Time", timeformat);
+                        reports.child(ReportId).setValue(report);
+                    }
                 }
             }
 
