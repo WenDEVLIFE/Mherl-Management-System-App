@@ -22,7 +22,20 @@ Add Product
 
 Sales
 
-![Uploading image.png…]()
+![image](https://github.com/WenDEVLIFE/Mherl-Management-System-App/assets/117834496/2e4e238f-71ba-4711-b1a3-fa454d1e4ee7)
+
+User
+
+![image](https://github.com/WenDEVLIFE/Mherl-Management-System-App/assets/117834496/e5941a4a-a124-4196-9632-5166a76cd4b8)
+
+Add User
+![image](https://github.com/WenDEVLIFE/Mherl-Management-System-App/assets/117834496/441f2676-31b5-404e-a21c-bbb5bd5e7ae4)
+
+App Info
+
+![image](https://github.com/WenDEVLIFE/Mherl-Management-System-App/assets/117834496/4982187c-718d-4ec0-bef6-eda6d7b13600)
+
+
 
 
 
