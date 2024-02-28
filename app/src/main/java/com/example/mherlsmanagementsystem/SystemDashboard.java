@@ -35,6 +35,7 @@ public class SystemDashboard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_system_dashboard);
 
+        // This is for the background image
         ImageView imageView = findViewById(R.id.sunrisegif);
 
         // we use this to get the current time
@@ -103,7 +104,7 @@ public class SystemDashboard extends AppCompatActivity {
         username = intent.getStringExtra("username");
         role = intent.getStringExtra("role");
 
-        // To greet the userg
+        // To greet the user
         greetings = findViewById(R.id.textView);
         greetings.setText("Welcome "+ username);
 
@@ -117,6 +118,7 @@ public class SystemDashboard extends AppCompatActivity {
          FirebaseController count = FirebaseController.getInstance();
          count.Countinfo(Admintext, ProductText, UserText, SalesText);
 
+         // This is for the navigation view
         NavigationView navigationView = findViewById(R.id.nav_view);
         usernametext = navigationView.getHeaderView(0).findViewById(R.id.username);
         RoleText = navigationView.getHeaderView(0).findViewById(R.id.Role);
