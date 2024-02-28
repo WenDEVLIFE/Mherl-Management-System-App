@@ -61,6 +61,7 @@ public class FirebaseController {
     }
 
     public void setBuyListener(BuyProduct buyProduct) {
+        // BuyProduct is an interface
         this.buyProduct = buyProduct;
 
     }
@@ -182,7 +183,11 @@ public class FirebaseController {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
+                        // This will get the quantity of the product
                         int quantity = snapshot.child("quantity").getValue(Integer.class);
+
+                        // This will get the price of the product
                         String price = snapshot.child("price").getValue(String.class);
                             if (quantity >= productquantity1) {
 
@@ -285,6 +290,7 @@ public class FirebaseController {
             }
         });
 
+        //This will count the sales of the product
         DatabaseReference salesRef = Database.child("Sales");
         salesRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -318,7 +324,11 @@ public class FirebaseController {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
+
+                    // count the admin
                     long count = dataSnapshot.getChildrenCount();
+
+                    // This will set the value of the admin
                     admintext.setText(String.valueOf(count));
                 }
             }

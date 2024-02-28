@@ -18,6 +18,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.time.LocalTime;
+import java.util.Objects;
 
 import FirebaseController.FirebaseController;
 
@@ -106,11 +107,13 @@ public class SystemDashboard extends AppCompatActivity {
         greetings = findViewById(R.id.textView);
         greetings.setText("Welcome "+ username);
 
+        // This is for the count of the admin, product, user and sales
         Admintext = findViewById(R.id.admintext);
         ProductText = findViewById(R.id.producttext);
         UserText = findViewById(R.id.usertext);
         SalesText = findViewById(R.id.salestext);
 
+        // Send the count to the firebase
          FirebaseController count = FirebaseController.getInstance();
          count.Countinfo(Admintext, ProductText, UserText, SalesText);
 
@@ -133,6 +136,8 @@ public class SystemDashboard extends AppCompatActivity {
 
 
             } else if (id == R.id.navigation_product) {
+
+                // This will go to products
                 Intent intent1 = new Intent(SystemDashboard.this, Product.class);
                 intent1.putExtra("username", username);
                 intent1.putExtra("role", role);
@@ -148,17 +153,22 @@ public class SystemDashboard extends AppCompatActivity {
                 // Handle navigation_notifications action
             } else if (id == R.id.create_user) {
 
-                // This will go to add user
-                AlertDialog alerts = new AlertDialog.Builder(SystemDashboard.this).create();
-                alerts.setTitle("Alert");
-                alerts.setMessage("You are already in the Notification Page");
-                alerts.show();
-                // Handle create_user action
-                Intent intent1 = new Intent(SystemDashboard.this, AddUser.class);
-                intent1.putExtra("username", username);
-                intent1.putExtra("role", role);
-                startActivity(intent1);
-                finish();
+                if (role.equals("Admin")){
+
+                    // This will go to add user
+                    // Handle create_user action
+                    Intent intent1 = new Intent(SystemDashboard.this, AddUser.class);
+                    intent1.putExtra("username", username);
+                    intent1.putExtra("role", role);
+                    startActivity(intent1);
+                    finish();
+                } else{
+                    AlertDialog alerts = new AlertDialog.Builder(SystemDashboard.this).create();
+                    alerts.setTitle("Alert");
+                    alerts.setMessage("You are not an Admin, you can't access this page");
+                    alerts.show();
+
+                }
             }
             else if (id == R.id.appinfo) {
 

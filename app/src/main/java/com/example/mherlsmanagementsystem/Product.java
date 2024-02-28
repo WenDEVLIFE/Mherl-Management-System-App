@@ -26,6 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import functions.ProductAdapter;
 import functions.ProductBase;
@@ -123,17 +124,23 @@ public class Product extends AppCompatActivity implements ProductAdapter.OnDelet
                 // Handle navigation_notifications action
             } else if (id == R.id.create_user) {
 
-                // This will go to add user
-                AlertDialog alerts = new AlertDialog.Builder(Product.this).create();
-                alerts.setTitle("Alert");
-                alerts.setMessage("You are already in the Notification Page");
-                alerts.show();
-                // Handle create_user action
-                Intent intent1 = new Intent(Product.this, AddUser.class);
-                intent1.putExtra("username", username);
-                intent1.putExtra("role", role);
-                startActivity(intent1);
-                finish();
+                assert role != null;
+                if (role.equals("Admin"))  {
+
+                    // This will go to add user
+                    // Handle create_user action
+                    Intent intent1 = new Intent(Product.this, AddUser.class);
+                    intent1.putExtra("username", username);
+                    intent1.putExtra("role", role);
+                    startActivity(intent1);
+                    finish();
+                } else{
+                    AlertDialog alerts = new AlertDialog.Builder(Product.this).create();
+                    alerts.setTitle("Alert");
+                    alerts.setMessage("You are not an Admin, you can't access this page");
+                    alerts.show();
+
+                }
             }
 
             // This is for the app info
