@@ -73,8 +73,8 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
-                        android:layout_width="385dp"
-                        android:layout_height="627dp"
+                        android:layout_width="@dimen/_280sdp"
+                        android:layout_height="@dimen/_480sdp"
                         android:id="@+id/salesview"
                         android:background="@drawable/dash_layout"
                         app:layout_constraintStart_toStartOf="parent"

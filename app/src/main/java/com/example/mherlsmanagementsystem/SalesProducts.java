@@ -10,6 +10,8 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,7 +31,7 @@ import functions.ProductBase;
 import functions.Sales;
 import functions.SalesAdapter;
 
-public class SalesProducts extends AppCompatActivity implements SalesAdapter.OnDeleteClickListener{
+public class SalesProducts extends AppCompatActivity implements SalesAdapter.OnDeleteClickListener, GestureDetector.OnGestureListener{
     TextView usernametext, RoleText;
 
     String username, role;
@@ -40,6 +42,8 @@ public class SalesProducts extends AppCompatActivity implements SalesAdapter.OnD
     private List<Sales> salesList;
 
     DatabaseReference myRef;
+
+     GestureDetector gestureDetector;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,11 +122,12 @@ public class SalesProducts extends AppCompatActivity implements SalesAdapter.OnD
             // This is for the app info
             else if (id == R.id.appinfo) {
 
-                // alerts
-                AlertDialog alerts = new AlertDialog.Builder(SalesProducts.this).create();
-                alerts.setTitle("Alert");
-                alerts.setMessage("You are already in the Notification Page1");
-                alerts.show();
+                // This will go to app info
+                Intent intent1 = new Intent(SalesProducts.this, AppInfo.class);
+                intent1.putExtra("username", username);
+                intent1.putExtra("role", role);
+                startActivity(intent1);
+                finish();
 
             }
             else if (id == R.id.logoutid) {
@@ -259,5 +264,54 @@ public class SalesProducts extends AppCompatActivity implements SalesAdapter.OnD
             dialog.dismiss();
         });
         builder.show();
+    }
+
+    // This method is for the swipe gesture
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        // Pass touch events to the GestureDetector
+        return gestureDetector.onTouchEvent(event) || super.onTouchEvent(event);
+    }
+
+    // This is for gesture
+    @Override
+    public boolean onDown(@NonNull MotionEvent e) {
+        return true;
+    }
+
+    @Override
+    public void onShowPress(@NonNull MotionEvent e) {
+    }
+
+    @Override
+    public boolean onSingleTapUp(@NonNull MotionEvent e) {
+        return true;
+    }
+
+    @Override
+    public boolean onScroll(MotionEvent e1, @NonNull MotionEvent e2, float distanceX, float distanceY) {
+        return true;
+    }
+
+    @Override
+    public void onLongPress(@NonNull MotionEvent e) {
+
+    }
+
+    @Override
+    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+        // Check for upward swipe and reload the activity
+        assert e1 != null;
+        if (e1.getY() > e2.getY()) {
+            reloadActivity();
+            return true;
+        }
+        return false;
+    }
+
+
+    // Function to reload the activity
+    private void reloadActivity() {
+        recreate();
     }
 }

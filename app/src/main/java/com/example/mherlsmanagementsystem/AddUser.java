@@ -44,7 +44,7 @@ public class AddUser extends AppCompatActivity implements UserAdapter.OnDeleteCl
     private List<User> userList;
     DatabaseReference myRef;
 
-    private GestureDetector gestureDetector;
+    GestureDetector gestureDetector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

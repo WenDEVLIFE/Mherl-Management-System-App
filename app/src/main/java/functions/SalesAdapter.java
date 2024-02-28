@@ -94,5 +94,6 @@ public class SalesAdapter extends RecyclerView.Adapter<SalesAdapter.SalesViewHol
             quantity.setText(String.valueOf(info.getQuantity()));
             date.setText(info.getDate());
         }
+
     }
 }

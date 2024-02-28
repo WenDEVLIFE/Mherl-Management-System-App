@@ -47,7 +47,7 @@ public class Product extends AppCompatActivity implements ProductAdapter.OnDelet
     DatabaseReference myRef;
 
     // private gesture variable
-    private GestureDetector gestureDetector;
+     GestureDetector gestureDetector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -308,7 +308,7 @@ public class Product extends AppCompatActivity implements ProductAdapter.OnDelet
         builder.show();
     }
 
-
+// This is for gesture
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         // Pass touch events to the GestureDetector

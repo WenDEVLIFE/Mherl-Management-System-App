@@ -73,8 +73,8 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="@dimen/_280sdp"
-                        android:layout_height="@dimen/_510sdp"
+                        android:layout_width="@dimen/_290sdp"
+                        android:layout_height="@dimen/_480sdp"
                         android:background="@drawable/shadowpanel"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -85,7 +85,7 @@
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="@dimen/_252sdp"
-                            android:layout_height="@dimen/_500sdp"
+                            android:layout_height="@dimen/_450sdp"
                             android:background="@drawable/dash_layout"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"

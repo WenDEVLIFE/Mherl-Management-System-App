@@ -185,10 +185,13 @@ public class CreateUser extends AppCompatActivity implements UserCreationListene
 
             }
             else if (id == R.id.appinfo) {
-                AlertDialog alerts = new AlertDialog.Builder(CreateUser.this).create();
-                alerts.setTitle("Alert");
-                alerts.setMessage("You are already in the Notification Page1");
-                alerts.show();
+                // This will go to app info
+                Intent intent1 = new Intent(CreateUser.this, AppInfo.class);
+                intent1.putExtra("username", username1);
+                intent1.putExtra("role", role1);
+                startActivity(intent1);
+                finish();
+
 
             }
             else if (id == R.id.logoutid) {

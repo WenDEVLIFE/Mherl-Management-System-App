@@ -144,10 +144,13 @@ public class BuyProduct extends AppCompatActivity implements BuyListener {
             }
             else if (id == R.id.appinfo) {
 
-                AlertDialog alerts = new AlertDialog.Builder(BuyProduct.this).create();
-                alerts.setTitle("Alert");
-                alerts.setMessage("You are already in the Notification Page1");
-                alerts.show();
+                // This will go to app info
+                Intent intent1 = new Intent(BuyProduct.this, AppInfo.class);
+                intent1.putExtra("username", username);
+                intent1.putExtra("role", role);
+                startActivity(intent1);
+                finish();
+
 
             }
             else if (id == R.id.logoutid) {
