@@ -136,8 +136,10 @@ public class SystemDashboard extends AppCompatActivity {
                 alertDialog.setMessage("You are already in the Home Page");
                 alertDialog.show();
 
+            }
 
-            } else if (id == R.id.navigation_product) {
+            // This will go to products
+            else if (id == R.id.navigation_product) {
 
                 // This will go to products
                 Intent intent1 = new Intent(SystemDashboard.this, Product.class);

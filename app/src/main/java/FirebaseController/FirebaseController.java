@@ -11,6 +11,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -213,18 +214,28 @@ public class FirebaseController {
                                     // This will create a unique id
                                     String salesId = UUID.randomUUID().toString();
 
-                                    // This is for hashmap
-                                    Map<String, Object> sale = new HashMap<>();
-                                    sale.put("productname", productname1);
-                                    sale.put("quantity", productquantity1);
-                                    sale.put("totalprice", total_price);
+                                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                                        LocalDate date = LocalDate.now();
 
-                                    // then insert the value in hashmap
-                                    salesRef.child(salesId).setValue(sale);
+                                        // This is for hashmap
+                                        Map<String, Object> sale = new HashMap<>();
+                                        sale.put("productname", productname1);
+                                        sale.put("quantity", productquantity1);
+                                        sale.put("date", date);
+                                        sale.put("totalprice", total_price);
 
 
-                                    // This is for the success
-                                    buyProduct.onSuccess();
+                                        // then insert the value in hashmap
+                                        salesRef.child(salesId).setValue(sale);
+
+
+                                        // This is for the success
+                                        buyProduct.onSuccess();
+                                    }
+
+
+
+
                                 }
 
 
