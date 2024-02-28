@@ -85,7 +85,7 @@ public class CreateUser extends AppCompatActivity implements UserCreationListene
         // This is for the add user button
         adduser= findViewById(R.id.buttonadd);
         adduser.setOnClickListener(v -> {
-            String username1 = username.getText().toString();
+            String usernameinfo = username.getText().toString();
             String password1 = password.getText().toString();
             String role1 = role.getSelectedItem().toString();
 
@@ -112,7 +112,7 @@ public class CreateUser extends AppCompatActivity implements UserCreationListene
                         send.setUserCreationListener(this);
 
                         // send it on the parameters
-                        send.CreateUser(username1, password1, role1, username);
+                        send.CreateUser(usernameinfo, password1, role1, username1);
 
 
                     } else{

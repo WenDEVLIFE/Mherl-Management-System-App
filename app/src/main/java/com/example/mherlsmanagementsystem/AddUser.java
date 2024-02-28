@@ -243,11 +243,11 @@ public class AddUser extends AppCompatActivity implements UserAdapter.OnDeleteCl
 
     // This for delete method of user
     private void deleteComplaintFromDatabase(User info) {
-        String username = info.getUsername();
+        String usernamedb = info.getUsername();
 
-        Log.d("FirebaseDelete", "Deleting complaint with content: " +username);
+        Log.d("FirebaseDelete", "Deleting complaint with content: " +usernamedb);
 
-        myRef.orderByChild("username").equalTo(username).addListenerForSingleValueEvent(new ValueEventListener() {
+        myRef.orderByChild("username").equalTo(usernamedb).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {

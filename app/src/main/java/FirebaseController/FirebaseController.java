@@ -70,7 +70,7 @@ public class FirebaseController {
     }
 
     // This method will create a user
-    public void CreateUser(String username1, String password1, String role1, EditText username) {
+    public void CreateUser(String username1, String password1, String role1, String usernamevalue) {
         DatabaseReference usersRef = Database.child("Users");
         usersRef.orderByChild("username").equalTo(username1).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -99,8 +99,6 @@ public class FirebaseController {
                         // then insert the value in hashmap
                         usersRef.child(userId).setValue(user);
 
-                        //This is for adding
-                        User user1 = (new User(username1, role1));
 
                         // This is for the success
                         userCreationListener.onSuccess();
@@ -109,8 +107,8 @@ public class FirebaseController {
                         LocalTime time = null;
                         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
                             // This is for the report
-                            FirebaseDatabase database = FirebaseDatabase.getInstance();
-                            DatabaseReference reports = database.getReference("Reports");
+                            FirebaseDatabase Database = FirebaseDatabase.getInstance();
+                            DatabaseReference reports = Database.getReference("Reports");
                             String ReportId = UUID.randomUUID().toString();
                             date = LocalDate.now();
                             time = LocalTime.now();
@@ -118,7 +116,7 @@ public class FirebaseController {
                             String timeformat = time.toString();
 
                             Map <String, Object> report = new HashMap<>();
-                            report.put("username", username);
+                            report.put("username", usernamevalue);
                             report.put("Activity", "User Created");
                             report.put("Date", dateformat);
                             report.put("Time", timeformat);
