@@ -128,8 +128,7 @@ public class Product extends AppCompatActivity implements ProductAdapter.OnDelet
                 // Handle navigation_notifications action
             } else if (id == R.id.create_user) {
 
-                assert role != null;
-                if (role.equals("Admin"))  {
+                if (role != null && role.equals("Admin")) {
 
                     // This will go to add user
                     // Handle create_user action
@@ -150,10 +149,12 @@ public class Product extends AppCompatActivity implements ProductAdapter.OnDelet
             // This is for the app info
             else if (id == R.id.appinfo) {
 
-                AlertDialog alerts = new AlertDialog.Builder(Product.this).create();
-                alerts.setTitle("Alert");
-                alerts.setMessage("You are already in the Notification Page1");
-                alerts.show();
+                // This will go to app info
+                Intent intent1 = new Intent(Product.this, AppInfo.class);
+                intent1.putExtra("username", username);
+                intent1.putExtra("role", role);
+                startActivity(intent1);
+                finish();
 
             }
             else if (id == R.id.logoutid) {

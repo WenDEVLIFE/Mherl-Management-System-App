@@ -160,9 +160,7 @@ public class SystemDashboard extends AppCompatActivity {
 
                 // Handle navigation_notifications action
             } else if (id == R.id.create_user) {
-
-                if (role.equals("Admin")){
-
+                if (role != null && role.equals("Admin")){
                     // This will go to add user
                     // Handle create_user action
                     Intent intent1 = new Intent(SystemDashboard.this, AddUser.class);

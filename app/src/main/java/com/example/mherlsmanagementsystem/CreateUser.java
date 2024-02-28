@@ -174,14 +174,21 @@ public class CreateUser extends AppCompatActivity implements UserCreationListene
                 finish();
                 // Handle navigation_notifications action
             } else if (id == R.id.create_user) {
-
-                // Handle create_user action
-                Intent intent1 = new Intent(CreateUser.this, AddUser.class);
-                startActivity(intent1);
-                intent1.putExtra("username", username1);
-                intent1.putExtra("role", role1);
-                finish();
-                // Handle create_user action
+                if (role != null && role.equals("Admin")) {
+                    // Handle create_user action
+                    Intent intent1 = new Intent(CreateUser.this, AddUser.class);
+                    startActivity(intent1);
+                    intent1.putExtra("username", username1);
+                    intent1.putExtra("role", role1);
+                    finish();
+                    // Handle create_user action
+                }
+                else {
+                    AlertDialog alerts = new AlertDialog.Builder(CreateUser.this).create();
+                    alerts.setTitle("Alert");
+                    alerts.setMessage("You are not an Admin, you can't access this page");
+                    alerts.show();
+                }
 
             }
             else if (id == R.id.appinfo) {

@@ -139,11 +139,12 @@ public class AddUser extends AppCompatActivity implements UserAdapter.OnDeleteCl
             // This is for the app info
             else if (id == R.id.appinfo) {
 
-                // alerts
-                AlertDialog alerts = new AlertDialog.Builder(AddUser.this).create();
-                alerts.setTitle("Alert");
-                alerts.setMessage("You are already in the Notification Page1");
-                alerts.show();
+                // This will go to app info
+                Intent intent1 = new Intent(AddUser.this, AppInfo.class);
+                intent1.putExtra("username", username);
+                intent1.putExtra("role", role);
+                startActivity(intent1);
+                finish();
 
             }
             else if (id == R.id.logoutid) {

@@ -129,7 +129,7 @@ public class BuyProduct extends AppCompatActivity implements BuyListener {
 
                 // Handle navigation_notifications action
             } else if (id == R.id.create_user) {
-                 if (role.equals("Admin")) {
+                if (role != null && role.equals("Admin")) {
                      Intent intent1 = new Intent(BuyProduct.this, AddUser.class);
                      intent1.putExtra("username", username);
                      intent1.putExtra("role", role);

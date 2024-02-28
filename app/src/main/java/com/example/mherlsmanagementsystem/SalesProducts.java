@@ -110,12 +110,22 @@ public class SalesProducts extends AppCompatActivity implements SalesAdapter.OnD
 
                 // Handle navigation_notifications action
             } else if (id == R.id.create_user) {
+                if (role != null && role.equals("Admin")){
 
-                AlertDialog alerts = new AlertDialog.Builder(SalesProducts.this).create();
-                alerts.setTitle("Alert");
-                alerts.setMessage("You are already in the Add User Page");
-                alerts.show();
-                // Handle create_user action
+                    // This will go to add user
+                    // Handle create_user action
+                    Intent intent1 = new Intent(SalesProducts.this, AddUser.class);
+                    intent1.putExtra("username", username);
+                    intent1.putExtra("role", role);
+                    startActivity(intent1);
+                    finish();
+                } else{
+                    AlertDialog alerts = new AlertDialog.Builder(SalesProducts.this).create();
+                    alerts.setTitle("Alert");
+                    alerts.setMessage("You are not an Admin, you can't access this page");
+                    alerts.show();
+
+                }
 
             }
 
