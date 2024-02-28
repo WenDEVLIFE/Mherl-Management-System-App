@@ -6,13 +6,13 @@ public class Sales {
 
     public String productName;
 
-    public String quantity;
+    public int quantity;
 
-    public String totalprice;
+    public int totalprice;
 
     public String date;
 
-    public Sales( String productName, String quantity, String totalprice, String date) {
+    public Sales( String productName, int quantity, int totalprice, String date) {
         this.productName = productName;
         this.quantity = quantity;
         this.totalprice = totalprice;
@@ -27,20 +27,20 @@ public class Sales {
         this.productName = productName;
     }
 
-    public String getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
     public void setQuantity(String quantity) {
-        this.quantity = quantity;
+        this.quantity = Integer.parseInt(quantity);
     }
 
-    public String getTotalprice() {
+    public int getTotalprice() {
         return totalprice;
     }
 
     public void setTotalprice(String totalprice) {
-        this.totalprice = totalprice;
+        this.totalprice = Integer.parseInt(totalprice);
     }
 
     public String getDate() {

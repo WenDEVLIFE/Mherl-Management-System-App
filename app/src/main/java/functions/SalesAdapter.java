@@ -90,7 +90,7 @@ public class SalesAdapter extends RecyclerView.Adapter<SalesAdapter.SalesViewHol
         public void bind(Sales info) {
             // Bind data to views
             productname.setText(info.getProductName());
-            price.setText(info.getTotalprice());
+            price.setText(String.valueOf(info.getTotalprice()));
             quantity.setText(String.valueOf(info.getQuantity()));
             date.setText(info.getDate());
         }

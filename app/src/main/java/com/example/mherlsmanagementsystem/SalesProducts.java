@@ -1,19 +1,45 @@
 package com.example.mherlsmanagementsystem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-public class SalesProducts extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
+
+import functions.ProductAdapter;
+import functions.ProductBase;
+import functions.Sales;
+import functions.SalesAdapter;
+
+public class SalesProducts extends AppCompatActivity implements SalesAdapter.OnDeleteClickListener{
     TextView usernametext, RoleText;
 
     String username, role;
+
+    RecyclerView recyclerView;
+
+    private SalesAdapter adapter;
+    private List<Sales> salesList;
+
+    DatabaseReference myRef;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +50,20 @@ public class SalesProducts extends AppCompatActivity {
         Intent intent = getIntent();
         username = intent.getStringExtra("username");
         role = intent.getStringExtra("role");
+
+
+        // it has its function to display
+        recyclerView = findViewById(R.id.salesview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        salesList = new ArrayList<>();
+        adapter = new SalesAdapter(salesList);
+        recyclerView.setAdapter(adapter);
+
+        // This is for the delete method
+        adapter.setOnDeleteClickListener(this);
+
+        // This is for the load user
+        LoadUser();
 
         // This is for navbar
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -115,4 +155,109 @@ public class SalesProducts extends AppCompatActivity {
 
     }
 
+    public void LoadUser(){
+
+        // Load the products
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("Sales");
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                salesList.clear();
+
+                // This will retrieve from the database
+                for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+                    String productname = userSnapshot.child("productname").getValue(String.class);
+                    int price = userSnapshot.child("totalprice").getValue(int.class);
+                    int quantity = userSnapshot.child("quantity").getValue(int.class);
+                    String date = userSnapshot.child("date").getValue(String.class);
+                    salesList.add(new Sales(productname, price, quantity, date));
+                }
+
+                // This is for the adapter
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+
+                // This will alert that it failed read on the database
+                Toast.makeText(SalesProducts.this, "Failed to read data from database", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+    @Override
+    public void onDeleteClick(int position) {
+        // yes or no alert
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Delete Product?");
+        builder.setMessage("Are you sure you want to delete this user?");
+        builder.setPositiveButton("Yes", (dialog, which) -> {
+            if (position >= 0 && position < salesList.size()) {
+
+                // This is for the delete method
+                Sales productdelete= salesList.get(position);
+                deleteComplaintFromDatabase(productdelete);
+                salesList.remove(position);
+                adapter.notifyItemRemoved(position);
+
+            }
+        });
+        builder.setNegativeButton("No", (dialog, which) -> {
+            // Do nothing
+        });
+        builder.show();
+    }
+
+    // This for delete method of user
+    private void deleteComplaintFromDatabase(Sales info) {
+        String productname = info.getProductName();
+
+        Log.d("FirebaseDelete", "Deleting complaint with content: " +productname);
+
+        myRef.orderByChild("productname").equalTo(productname).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Log.d("FirebaseDelete", "Found match, deleting: " + snapshot.getValue());
+                    snapshot.getRef().removeValue();
+
+                    Toast.makeText(SalesProducts.this, "Sales deleted", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(SalesProducts.this, "Failed to delete sales from database", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+    // This method is to handle the back button
+    // we add Supper.onBackPressed() to handle the back button
+    // Override the onBackPressed method
+    @SuppressLint("MissingSuperCall")
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Logout");
+        builder.setMessage("Are you sure you want to logout?");
+        builder.setPositiveButton("Yes", (dialog, which) -> {
+            // LOGOUT CLASS
+            Intent intent = new Intent(SalesProducts.this, MainActivity.class);
+            startActivity(intent);
+            FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+            // To sign out the current user
+            mAuth.signOut();
+            finish();
+        });
+        builder.setNegativeButton("No", (dialog, which) -> {
+            dialog.dismiss();
+        });
+        builder.show();
+    }
 }

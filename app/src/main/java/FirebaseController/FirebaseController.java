@@ -315,7 +315,7 @@ public class FirebaseController {
                     // For data snapshot
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         long total_price = 0;
-                        int price = snapshot.child("price").getValue(Integer.class);
+                        int price = snapshot.child("totalprice").getValue(Integer.class);
                         total_price += price;
 
                         // This will count the price
