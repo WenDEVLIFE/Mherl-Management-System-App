@@ -167,11 +167,11 @@ public class CreateUser extends AppCompatActivity implements UserCreationListene
 
                 // Handle navigation_product action
             } else if (id == R.id.navigation_notifications) {
-                AlertDialog alerts = new AlertDialog.Builder(CreateUser.this).create();
-                alerts.setTitle("Alert");
-                alerts.setMessage("You are already in the Notification Page");
-                alerts.show();
-
+                Intent intent1 = new Intent(CreateUser.this, SalesProducts.class);
+                intent1.putExtra("username", username1);
+                intent1.putExtra("role", role1);
+                startActivity(intent1);
+                finish();
                 // Handle navigation_notifications action
             } else if (id == R.id.create_user) {
 

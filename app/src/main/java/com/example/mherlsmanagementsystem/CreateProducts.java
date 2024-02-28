@@ -107,36 +107,37 @@ public class CreateProducts extends AppCompatActivity implements CreateListener 
             if (id == R.id.navigation_home) {
 
                 // Handle navigation_home action
-                AlertDialog alertDialog = new AlertDialog.Builder(CreateProducts.this).create();
-                alertDialog.setTitle("Alert");
-                alertDialog.setMessage("You are already in the Home Page");
-                alertDialog.show();
+                // Handle navigation_home action
+                Intent intent1 = new Intent(CreateProducts.this, SystemDashboard.class);
+                intent1.putExtra("username", username);
+                intent1.putExtra("role",role);
+                startActivity(intent1);
+                finish();
 
 
             } else if (id == R.id.navigation_product) {
 
-                // alerts
+                // Go to products
+                // Handle navigation_product action
                 AlertDialog alerts = new AlertDialog.Builder(CreateProducts.this).create();
                 alerts.setTitle("Alert");
                 alerts.setMessage("You are already in the Product page");
                 alerts.show();
-                // Handle navigation_product action
+
             } else if (id == R.id.navigation_notifications) {
 
-                // alerts
-                AlertDialog alerts = new AlertDialog.Builder(CreateProducts.this).create();
-                alerts.setTitle("Alert");
-                alerts.setMessage("You are already in the Notification Page");
-                alerts.show();
+                // Go to sales
+                Intent intent1 = new Intent(CreateProducts.this, SalesProducts.class);
+                intent1.putExtra("username", username);
+                intent1.putExtra("role", role);
+                startActivity(intent1);
+                finish();
+
 
                 // Handle navigation_notifications action
             } else if (id == R.id.create_user) {
 
                 // This will go to add user
-                AlertDialog alerts = new AlertDialog.Builder(CreateProducts.this).create();
-                alerts.setTitle("Alert");
-                alerts.setMessage("You are already in the Notification Page");
-                alerts.show();
                 // Handle create_user action
                 Intent intent1 = new Intent(CreateProducts.this, AddUser.class);
                 intent1.putExtra("username", username);

@@ -116,6 +116,14 @@ public class AddUser extends AppCompatActivity implements UserAdapter.OnDeleteCl
                 // Handle navigation_product action
             } else if (id == R.id.navigation_notifications) {
 
+                // Go to sales
+                Intent intent1 = new Intent(AddUser.this, SalesProducts.class);
+                intent1.putExtra("username", username);
+                intent1.putExtra("role", role);
+                startActivity(intent1);
+                finish();
+
+
 
                 // Handle navigation_notifications action
             } else if (id == R.id.create_user) {

@@ -103,10 +103,13 @@ public class BuyProduct extends AppCompatActivity implements BuyListener {
             if (id == R.id.navigation_home) {
 
                 // Handle navigation_home action
-                AlertDialog alertDialog = new AlertDialog.Builder(BuyProduct.this).create();
-                alertDialog.setTitle("Alert");
-                alertDialog.setMessage("You are already in the Home Page");
-                alertDialog.show();
+
+                // Handle navigation_home action
+                Intent intent1 = new Intent(BuyProduct.this, SystemDashboard.class);
+                intent1.putExtra("username", username);
+                intent1.putExtra("role",role);
+                startActivity(intent1);
+                finish();
 
              // This will go to navigation product
             } else if (id == R.id.navigation_product) {
@@ -117,11 +120,12 @@ public class BuyProduct extends AppCompatActivity implements BuyListener {
                 // Handle navigation_product action
             } else if (id == R.id.navigation_notifications) {
 
-                // alerts
-                AlertDialog alerts = new AlertDialog.Builder(BuyProduct.this).create();
-                alerts.setTitle("Alert");
-                alerts.setMessage("You are already in the Notification Page");
-                alerts.show();
+                // Go to sales product
+                Intent intent1 = new Intent(BuyProduct.this, SalesProducts.class);
+                intent1.putExtra("username", username);
+                intent1.putExtra("role", role);
+                startActivity(intent1);
+                finish();
 
                 // Handle navigation_notifications action
             } else if (id == R.id.create_user) {

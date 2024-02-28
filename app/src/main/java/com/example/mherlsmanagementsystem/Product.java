@@ -99,10 +99,12 @@ public class Product extends AppCompatActivity implements ProductAdapter.OnDelet
             if (id == R.id.navigation_home) {
 
                 // Handle navigation_home action
-                AlertDialog alertDialog = new AlertDialog.Builder(Product.this).create();
-                alertDialog.setTitle("Alert");
-                alertDialog.setMessage("You are already in the Home Page");
-                alertDialog.show();
+                // Handle navigation_home action
+                Intent intent1 = new Intent(Product.this, SystemDashboard.class);
+                intent1.putExtra("username", username);
+                intent1.putExtra("role",role);
+                startActivity(intent1);
+                finish();
 
 
             } else if (id == R.id.navigation_product) {
@@ -115,11 +117,13 @@ public class Product extends AppCompatActivity implements ProductAdapter.OnDelet
                 // Handle navigation_product action
             } else if (id == R.id.navigation_notifications) {
 
-                // alerts
-                AlertDialog alerts = new AlertDialog.Builder(Product.this).create();
-                alerts.setTitle("Alert");
-                alerts.setMessage("You are already in the Notification Page");
-                alerts.show();
+                // Go to sales product
+                Intent intent1 = new Intent(Product.this, SalesProducts.class);
+                intent1.putExtra("username", username);
+                intent1.putExtra("role", role);
+                startActivity(intent1);
+                finish();
+
 
                 // Handle navigation_notifications action
             } else if (id == R.id.create_user) {

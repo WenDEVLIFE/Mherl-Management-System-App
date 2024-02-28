@@ -215,13 +215,18 @@ public class FirebaseController {
                                     String salesId = UUID.randomUUID().toString();
 
                                     if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+
+                                        // get the localtime
                                         LocalDate date = LocalDate.now();
+
+                                        // convert it to string
+                                        String dateformat = date.toString();
 
                                         // This is for hashmap
                                         Map<String, Object> sale = new HashMap<>();
                                         sale.put("productname", productname1);
                                         sale.put("quantity", productquantity1);
-                                        sale.put("date", date);
+                                        sale.put("date", dateformat);
                                         sale.put("totalprice", total_price);
 
 
@@ -232,9 +237,6 @@ public class FirebaseController {
                                         // This is for the success
                                         buyProduct.onSuccess();
                                     }
-
-
-
 
                                 }
 

@@ -13,6 +13,9 @@
             android:theme="@style/Theme.MherlsManagementSystem"
             tools:targetApi="31">
         <activity
+                android:name=".SalesProducts"
+                android:exported="false" />
+        <activity
                 android:name=".BuyProduct"
                 android:exported="false" />
         <activity

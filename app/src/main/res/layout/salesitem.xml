@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- item_complaint.xml -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dash_layout">
+
+    <TextView
+            android:id="@+id/product_name"
+            android:layout_width="282dp"
+            android:layout_height="50dp"
+            android:textSize="@dimen/_20sdp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:padding="8dp"
+            android:background="@color/white"
+            app:layout_constraintStart_toEndOf="@+id/NAME"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.0" />
+
+    <TextView
+            android:id="@+id/NAME"
+            android:text="Product"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:textSize="@dimen/_20sdp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:padding="8dp"
+            android:background="@color/white"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+            android:id="@+id/NAME2"
+            android:text="Price"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:textSize="@dimen/_20sdp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:padding="8dp"
+            android:background="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="4dp"
+            app:layout_constraintTop_toBottomOf="@+id/NAME" />
+
+    <TextView
+            android:id="@+id/NAME1"
+            android:text="Quantity"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:textSize="@dimen/_20sdp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:padding="8dp"
+            android:background="@color/white"
+            tools:layout_editor_absoluteY="102dp"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+            android:id="@+id/price"
+            android:layout_width="286dp"
+            android:layout_height="49dp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_20sdp"
+            android:padding="8dp"
+            android:background="@color/white"
+            app:layout_constraintStart_toEndOf="@+id/NAME2"
+            android:layout_marginTop="4dp"
+            app:layout_constraintTop_toBottomOf="@+id/product_name" />
+
+    <TextView
+            android:id="@+id/quantity"
+            android:layout_width="288dp"
+            android:layout_height="41dp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_20sdp"
+            android:padding="8dp"
+            android:background="@color/white"
+            app:layout_constraintStart_toEndOf="@+id/NAME1"
+            app:layout_constraintTop_toBottomOf="@+id/price"
+            android:layout_marginTop="8dp" />
+
+    <Button
+            android:id="@+id/deleteButton"
+            android:layout_width="164dp"
+            android:layout_height="56dp"
+            android:fontFamily="sans-serif-condensed"
+            android:textSize="@dimen/_20sdp"
+            android:textColor="@color/black"
+            android:background="@drawable/button"
+            android:text="Delete"
+            android:onClick="onDeleteButtonClick"
+            tools:layout_editor_absoluteY="152dp"
+            tools:layout_editor_absoluteX="120dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

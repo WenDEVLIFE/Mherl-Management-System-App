@@ -149,10 +149,14 @@ public class SystemDashboard extends AppCompatActivity {
                 finish();
                 // Handle navigation_product action
             } else if (id == R.id.navigation_notifications) {
-                AlertDialog alerts = new AlertDialog.Builder(SystemDashboard.this).create();
-                alerts.setTitle("Alert");
-                alerts.setMessage("You are already in the Notification Page");
-                alerts.show();
+
+                // Go to sales
+                Intent intent1 = new Intent(SystemDashboard.this, SalesProducts.class);
+                intent1.putExtra("username", username);
+                intent1.putExtra("role", role);
+                startActivity(intent1);
+                finish();
+
 
                 // Handle navigation_notifications action
             } else if (id == R.id.create_user) {
