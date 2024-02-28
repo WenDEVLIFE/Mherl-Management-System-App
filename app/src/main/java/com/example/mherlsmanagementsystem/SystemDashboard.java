@@ -19,11 +19,15 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.time.LocalTime;
 
+import FirebaseController.FirebaseController;
+
 public class SystemDashboard extends AppCompatActivity {
 
     TextView usernametext, RoleText, greetings;
 
     String username, role;
+
+    TextView Admintext, ProductText, UserText, SalesText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +105,14 @@ public class SystemDashboard extends AppCompatActivity {
         // To greet the userg
         greetings = findViewById(R.id.textView);
         greetings.setText("Welcome "+ username);
+
+        Admintext = findViewById(R.id.admintext);
+        ProductText = findViewById(R.id.producttext);
+        UserText = findViewById(R.id.usertext);
+        SalesText = findViewById(R.id.salestext);
+
+         FirebaseController count = FirebaseController.getInstance();
+         count.Countinfo(Admintext, ProductText, UserText, SalesText);
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         usernametext = navigationView.getHeaderView(0).findViewById(R.id.username);

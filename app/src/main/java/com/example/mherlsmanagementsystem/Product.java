@@ -45,6 +45,7 @@ public class Product extends AppCompatActivity implements ProductAdapter.OnDelet
     String role;
     DatabaseReference myRef;
 
+    // private gesture variable
     private GestureDetector gestureDetector;
 
     @Override
@@ -177,6 +178,7 @@ public class Product extends AppCompatActivity implements ProductAdapter.OnDelet
     // This is where we load the user from the database to recycleviewer
     public void LoadUser(){
 
+        // Load the products
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         myRef = database.getReference("Products");
 
@@ -199,6 +201,8 @@ public class Product extends AppCompatActivity implements ProductAdapter.OnDelet
 
             @Override
             public void onCancelled(DatabaseError error) {
+
+                // This will alert that it failed read on the database
                 Toast.makeText(Product.this, "Failed to read data from database", Toast.LENGTH_SHORT).show();
             }
         });

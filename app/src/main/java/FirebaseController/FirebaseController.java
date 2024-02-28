@@ -1,5 +1,7 @@
 package FirebaseController;
 
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 
 import com.example.mherlsmanagementsystem.BuyProduct;
@@ -242,4 +244,89 @@ public class FirebaseController {
         });
     }
 
+    public void Countinfo(TextView admintext, TextView productText, TextView userText, TextView salesText)
+    {
+
+        // get the user reference
+        DatabaseReference usersRef = Database.child("Users");
+        usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+
+                    // count the user
+                    long count = dataSnapshot.getChildrenCount();
+                    userText.setText("Users: " + count);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle possible errors.
+            }
+        });
+
+        // get the product reference
+        DatabaseReference productsRef = Database.child("Products");
+        productsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+
+                    // count the product
+                    long count = dataSnapshot.getChildrenCount();
+                    productText.setText("Products: " + count);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle possible errors.
+            }
+        });
+
+        DatabaseReference salesRef = Database.child("Sales");
+        salesRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.exists()) {
+                    // i want to count the total price
+                    long total_price = 0;
+
+                    // For data snapshot
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        int price = snapshot.child("price").getValue(Integer.class);
+                        total_price += price;
+
+                        // This will count the price
+                        salesText.setText("Sales: " + total_price);
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle possible errors.
+            }
+        });
+
+        // Admin reference
+        DatabaseReference adminRef = Database.child("Users");
+        adminRef.orderByChild("role").equalTo("Admin").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    long count = dataSnapshot.getChildrenCount();
+                    admintext.setText("Admins: " + count);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle possible errors.
+            }
+        });
+    }
 }

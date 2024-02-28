@@ -110,7 +110,7 @@
             android:textSize="@dimen/_20sdp"
             android:textColor="@color/black"
             android:background="@drawable/button"
-            android:text="Edit"
+            android:text="Buy"
             android:onClick="onEditClickListener"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/deleteButton"
