@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -120,6 +121,31 @@ public class AppInfo extends AppCompatActivity {
             return true;
         });
 
+    }
+
+    // This method is to handle the back button
+    // we add Supper.onBackPressed() to handle the back button
+    // Override the onBackPressed method
+    @SuppressLint("MissingSuperCall")
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Logout");
+        builder.setMessage("Are you sure you want to logout?");
+        builder.setPositiveButton("Yes", (dialog, which) -> {
+            // LOGOUT CLASS
+            Intent intent = new Intent(AppInfo.this, MainActivity.class);
+            startActivity(intent);
+            FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+            // To sign out the current user
+            mAuth.signOut();
+            finish();
+        });
+        builder.setNegativeButton("No", (dialog, which) -> {
+            dialog.dismiss();
+        });
+        builder.show();
     }
 
 }
