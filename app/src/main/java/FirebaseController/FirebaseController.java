@@ -198,7 +198,7 @@ public class FirebaseController {
 
                             Map <String, Object> report = new HashMap<>();
                             report.put("username", username);
-                            report.put("Activity", "User Created");
+                            report.put("Activity", "Create Products");
                             report.put("Date", dateformat);
                             report.put("Time", timeformat);
                             reports.child(ReportId).setValue(report);
@@ -297,7 +297,7 @@ public class FirebaseController {
 
                                             Map <String, Object> report = new HashMap<>();
                                             report.put("username", username);
-                                            report.put("Activity", "User Created");
+                                            report.put("Activity", "Buy Products");
                                             report.put("Date", dateformat1);
                                             report.put("Time", timeformat);
                                             reports.child(ReportId).setValue(report);

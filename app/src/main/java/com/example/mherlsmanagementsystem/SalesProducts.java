@@ -261,7 +261,7 @@ public class SalesProducts extends AppCompatActivity implements SalesAdapter.OnD
 
                         Map <String, Object> report = new HashMap<>();
                         report.put("username", username);
-                        report.put("Activity", "User Created");
+                        report.put("Activity", "Deleted Sales");
                         report.put("Date", dateformat);
                         report.put("Time", timeformat);
                         reports.child(ReportId).setValue(report);

@@ -275,7 +275,7 @@ public class Product extends AppCompatActivity implements ProductAdapter.OnDelet
 
                         Map <String, Object> report = new HashMap<>();
                         report.put("username", username);
-                        report.put("Activity", "User Created");
+                        report.put("Activity", "Delete Product");
                         report.put("Date", dateformat);
                         report.put("Time", timeformat);
                         reports.child(ReportId).setValue(report);

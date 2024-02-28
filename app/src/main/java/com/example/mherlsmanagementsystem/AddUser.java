@@ -268,7 +268,7 @@ public class AddUser extends AppCompatActivity implements UserAdapter.OnDeleteCl
 
                         Map <String, Object> report = new HashMap<>();
                         report.put("username", username);
-                        report.put("Activity", "User Created");
+                        report.put("Activity", "Deleted User");
                         report.put("Date", dateformat);
                         report.put("Time", timeformat);
                         reports.child(ReportId).setValue(report);
