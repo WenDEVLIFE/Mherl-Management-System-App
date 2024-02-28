@@ -256,7 +256,7 @@ public class FirebaseController {
 
                     // count the user
                     long count = dataSnapshot.getChildrenCount();
-                    userText.setText("Users: " + count);
+                    userText.setText(String.valueOf(count));
                 }
             }
 
@@ -275,7 +275,7 @@ public class FirebaseController {
 
                     // count the product
                     long count = dataSnapshot.getChildrenCount();
-                    productText.setText("Products: " + count);
+                    productText.setText(String.valueOf(count));
                 }
             }
 
@@ -292,15 +292,15 @@ public class FirebaseController {
 
                 if (dataSnapshot.exists()) {
                     // i want to count the total price
-                    long total_price = 0;
 
                     // For data snapshot
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        long total_price = 0;
                         int price = snapshot.child("price").getValue(Integer.class);
                         total_price += price;
 
                         // This will count the price
-                        salesText.setText("Sales: " + total_price);
+                        salesText.setText(String.valueOf(total_price));
                     }
 
                 }
@@ -319,13 +319,14 @@ public class FirebaseController {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     long count = dataSnapshot.getChildrenCount();
-                    admintext.setText("Admins: " + count);
+                    admintext.setText(String.valueOf(count));
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 // Handle possible errors.
+
             }
         });
     }
