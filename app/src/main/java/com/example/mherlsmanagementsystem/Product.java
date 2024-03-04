@@ -76,7 +76,7 @@ public class Product extends AppCompatActivity implements ProductAdapter.OnDelet
         // Get the intent from the previous activity
         Intent intent = getIntent();
         username = intent.getStringExtra("username");
-        String role = intent.getStringExtra("role");
+        role = intent.getStringExtra("role");
 
         // This is for floating button actions
         addproducts = findViewById(R.id.floating_add_product);

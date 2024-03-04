@@ -67,10 +67,12 @@ public class AppInfo extends AppCompatActivity {
                 // Handle navigation_product action
             } else if (id == R.id.navigation_notifications) {
 
-                AlertDialog alerts = new AlertDialog.Builder(AppInfo.this).create();
-                alerts.setTitle("Alert");
-                alerts.setMessage("You are already in the sales Page");
-                alerts.show();
+                Intent intent1 = new Intent(AppInfo.this, SalesProducts.class);
+                intent1.putExtra("username", username);
+                intent1.putExtra("role", role);
+                startActivity(intent1);
+                finish();
+
 
 
                 // Handle navigation_notifications action

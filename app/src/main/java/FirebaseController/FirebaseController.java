@@ -377,14 +377,14 @@ public class FirebaseController {
                     // i want to count the total price
 
                     // For data snapshot
+                    long total_price = 0;
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        long total_price = 0;
                         int price = snapshot.child("totalprice").getValue(Integer.class);
                         total_price += price;
 
                         // This will count the price
-                        salesText.setText(String.valueOf(total_price));
                     }
+                    salesText.setText(String.valueOf(total_price));
 
                 }
             }
